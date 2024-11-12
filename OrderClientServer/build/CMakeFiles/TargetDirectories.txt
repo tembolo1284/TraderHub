@@ -1,0 +1,11 @@
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/OrderClientServerLib.dir
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/OrderServer.dir
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/OrderClientServerTests.dir
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/OrderClient.dir
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/test.dir
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/edit_cache.dir
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/rebuild_cache.dir
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/list_install_components.dir
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/install.dir
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/install/local.dir
+/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/CMakeFiles/install/strip.dir

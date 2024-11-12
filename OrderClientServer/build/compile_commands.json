@@ -1,0 +1,72 @@
+[
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -std=gnu++20 -o CMakeFiles/OrderClientServerLib.dir/src/order_client_server.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/order_client_server.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/order_client_server.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -std=gnu++20 -o CMakeFiles/OrderClientServerLib.dir/src/order_service.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/order_service.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/order_service.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -std=gnu++20 -o CMakeFiles/OrderClientServerLib.dir/order_service.pb.cc.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.pb.cc",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.pb.cc"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -std=gnu++20 -o CMakeFiles/OrderClientServerLib.dir/order_service.grpc.pb.cc.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.grpc.pb.cc",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.grpc.pb.cc"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -std=gnu++20 -o CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -std=gnu++20 -o CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order_book.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order_book.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order_book.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -std=gnu++20 -o CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/prioritizable_value_st.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/prioritizable_value_st.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/prioritizable_value_st.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -std=gnu++20 -o CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trade.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trade.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trade.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -std=gnu++20 -o CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trader.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trader.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trader.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -std=gnu++20 -o CMakeFiles/OrderServer.dir/src/main.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/main.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/main.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -Wall -Wextra -Wpedantic -DGTEST_HAS_PTHREAD=1 -std=gnu++20 -o CMakeFiles/OrderClientServerTests.dir/tests/order_client_server_tests.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/tests/order_client_server_tests.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/tests/order_client_server_tests.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -std=gnu++20 -o CMakeFiles/OrderClient.dir/src/order_client_main.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/order_client_main.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/order_client_main.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -std=gnu++20 -o CMakeFiles/OrderClient.dir/order_service.pb.cc.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.pb.cc",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.pb.cc"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build",
+  "command": "/usr/bin/c++ -DCARES_STATICLIB -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include -std=gnu++20 -o CMakeFiles/OrderClient.dir/order_service.grpc.pb.cc.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.grpc.pb.cc",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.grpc.pb.cc"
+}
+]

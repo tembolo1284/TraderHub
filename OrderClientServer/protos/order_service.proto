@@ -1,0 +1,32 @@
+syntax = "proto3";
+package order_service;
+
+service OrderService {
+    rpc SubmitOrder(OrderRequest) returns (OrderResponse);
+    rpc CancelOrder(CancelRequest) returns (CancelResponse);
+}
+
+message OrderRequest {
+    string order_id = 1;
+    string trader_id = 2;
+    string stock_symbol = 3;
+    double price = 4;
+    int32 quantity = 5;
+    bool is_buy_order = 6;
+}
+
+message OrderResponse {
+    string status = 1;
+    double matched_price = 2;
+    int32 matched_quantity = 3;
+}
+
+message CancelRequest {
+    string order_id = 1;
+    bool is_buy_order = 2;
+}
+
+message CancelResponse {
+    string status = 1;
+}
+

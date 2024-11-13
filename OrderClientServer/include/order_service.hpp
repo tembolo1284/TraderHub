@@ -22,6 +22,11 @@ public:
     grpc::Status ViewOrderBook(grpc::ServerContext* context,
                              const order_service::ViewOrderBookRequest* request,
                              order_service::ViewOrderBookResponse* response) override;
+
+    grpc::Status StreamOrderBook(grpc::ServerContext* context,
+                               const order_service::ViewOrderBookRequest* request,
+                               grpc::ServerWriter<order_service::ViewOrderBookResponse>* writer) override;
+
 private:
     std::shared_ptr<OrderClientServer> server_;
 };

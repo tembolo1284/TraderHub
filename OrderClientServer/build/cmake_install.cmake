@@ -82,6 +82,13 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include/" FILES_MATCHING REGEX "/[^/]*\\.hpp$")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/generated" TYPE FILE FILES
+    "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.pb.h"
+    "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.grpc.pb.h"
+    )
+endif()
+
 if(CMAKE_INSTALL_COMPONENT)
   set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
 else()

@@ -1,0 +1,72 @@
+[
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/include -Wall -Wextra -Werror -pedantic -std=c++20 -o CMakeFiles/TradingEngineLib.dir/src/order.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/include -Wall -Wextra -Werror -pedantic -std=c++20 -o CMakeFiles/TradingEngineLib.dir/src/order_book.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order_book.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order_book.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/include -Wall -Wextra -Werror -pedantic -std=c++20 -o CMakeFiles/TradingEngineLib.dir/src/trade.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trade.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trade.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/include -Wall -Wextra -Werror -pedantic -std=c++20 -o CMakeFiles/TradingEngineLib.dir/src/trader.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trader.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trader.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock -Wall -Wextra -Werror -pedantic -std=c++20 -o CMakeFiles/unit_tests.dir/tests/unit/order_tests.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/unit/order_tests.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/unit/order_tests.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock -Wall -Wextra -Werror -pedantic -std=c++20 -o CMakeFiles/unit_tests.dir/tests/unit/order_book_tests.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/unit/order_book_tests.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/unit/order_book_tests.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock -Wall -Wextra -Werror -pedantic -std=c++20 -o CMakeFiles/unit_tests.dir/tests/unit/trade_tests.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/unit/trade_tests.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/unit/trade_tests.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock -Wall -Wextra -Werror -pedantic -std=c++20 -o CMakeFiles/unit_tests.dir/tests/unit/trader_tests.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/unit/trader_tests.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/unit/trader_tests.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest -Wall -Wextra -Werror -pedantic -std=c++20 -o CMakeFiles/integration_tests.dir/tests/integration/integration_tests.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/integration/integration_tests.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/integration/integration_tests.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest -Wall -Wextra -Werror -pedantic -std=c++20 -o CMakeFiles/performance_tests.dir/tests/performance/performance_tests.cpp.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/performance/performance_tests.cpp",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/tests/performance/performance_tests.cpp"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++20 -o _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++20 -o _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock/src/gmock_main.cc",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++20 -o _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/src/gtest-all.cc"
+},
+{
+  "directory": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build",
+  "command": "/usr/bin/c++ -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/include -isystem /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++20 -o _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "file": "/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/build/_deps/googletest-src/googletest/src/gtest_main.cc"
+}
+]

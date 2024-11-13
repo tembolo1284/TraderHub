@@ -35,6 +35,12 @@ include CMakeFiles/rules.ninja
 # Logical path to working directory; prefix for absolute paths.
 
 cmake_ninja_workdir = /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/
+
+#############################################
+# Utility command for generate_protos
+
+build generate_protos: phony CMakeFiles/generate_protos order_service.pb.cc order_service.grpc.pb.cc order_service.pb.h order_service.grpc.pb.h
+
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target OrderClientServerLib
 
@@ -42,95 +48,41 @@ cmake_ninja_workdir = /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClie
 #############################################
 # Order-only phony target for OrderClientServerLib
 
-build cmake_object_order_depends_target_OrderClientServerLib: phony || order_service.grpc.pb.cc order_service.grpc.pb.h order_service.pb.cc order_service.pb.h
+build cmake_object_order_depends_target_OrderClientServerLib: phony || generate_protos order_service.grpc.pb.cc order_service.grpc.pb.h order_service.pb.cc order_service.pb.h
 
 build CMakeFiles/OrderClientServerLib.dir/src/order_client_server.cpp.o: CXX_COMPILER__OrderClientServerLib_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/order_client_server.cpp || cmake_object_order_depends_target_OrderClientServerLib
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
   DEP_FILE = CMakeFiles/OrderClientServerLib.dir/src/order_client_server.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
+  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build
   OBJECT_DIR = CMakeFiles/OrderClientServerLib.dir
   OBJECT_FILE_DIR = CMakeFiles/OrderClientServerLib.dir/src
   TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerLib.dir/OrderClientServerLib.pdb
   TARGET_PDB = libOrderClientServerLib.pdb
 
 build CMakeFiles/OrderClientServerLib.dir/src/order_service.cpp.o: CXX_COMPILER__OrderClientServerLib_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/order_service.cpp || cmake_object_order_depends_target_OrderClientServerLib
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
   DEP_FILE = CMakeFiles/OrderClientServerLib.dir/src/order_service.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
+  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build
   OBJECT_DIR = CMakeFiles/OrderClientServerLib.dir
   OBJECT_FILE_DIR = CMakeFiles/OrderClientServerLib.dir/src
   TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerLib.dir/OrderClientServerLib.pdb
   TARGET_PDB = libOrderClientServerLib.pdb
 
 build CMakeFiles/OrderClientServerLib.dir/order_service.pb.cc.o: CXX_COMPILER__OrderClientServerLib_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.pb.cc || cmake_object_order_depends_target_OrderClientServerLib
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
   DEP_FILE = CMakeFiles/OrderClientServerLib.dir/order_service.pb.cc.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
+  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build
   OBJECT_DIR = CMakeFiles/OrderClientServerLib.dir
   OBJECT_FILE_DIR = CMakeFiles/OrderClientServerLib.dir
   TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerLib.dir/OrderClientServerLib.pdb
   TARGET_PDB = libOrderClientServerLib.pdb
 
 build CMakeFiles/OrderClientServerLib.dir/order_service.grpc.pb.cc.o: CXX_COMPILER__OrderClientServerLib_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.grpc.pb.cc || cmake_object_order_depends_target_OrderClientServerLib
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
   DEP_FILE = CMakeFiles/OrderClientServerLib.dir/order_service.grpc.pb.cc.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
+  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build
   OBJECT_DIR = CMakeFiles/OrderClientServerLib.dir
   OBJECT_FILE_DIR = CMakeFiles/OrderClientServerLib.dir
-  TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerLib.dir/OrderClientServerLib.pdb
-  TARGET_PDB = libOrderClientServerLib.pdb
-
-build CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order.cpp.o: CXX_COMPILER__OrderClientServerLib_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order.cpp || cmake_object_order_depends_target_OrderClientServerLib
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
-  OBJECT_DIR = CMakeFiles/OrderClientServerLib.dir
-  OBJECT_FILE_DIR = CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src
-  TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerLib.dir/OrderClientServerLib.pdb
-  TARGET_PDB = libOrderClientServerLib.pdb
-
-build CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order_book.cpp.o: CXX_COMPILER__OrderClientServerLib_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order_book.cpp || cmake_object_order_depends_target_OrderClientServerLib
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order_book.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
-  OBJECT_DIR = CMakeFiles/OrderClientServerLib.dir
-  OBJECT_FILE_DIR = CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src
-  TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerLib.dir/OrderClientServerLib.pdb
-  TARGET_PDB = libOrderClientServerLib.pdb
-
-build CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/prioritizable_value_st.cpp.o: CXX_COMPILER__OrderClientServerLib_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/prioritizable_value_st.cpp || cmake_object_order_depends_target_OrderClientServerLib
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/prioritizable_value_st.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
-  OBJECT_DIR = CMakeFiles/OrderClientServerLib.dir
-  OBJECT_FILE_DIR = CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src
-  TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerLib.dir/OrderClientServerLib.pdb
-  TARGET_PDB = libOrderClientServerLib.pdb
-
-build CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trade.cpp.o: CXX_COMPILER__OrderClientServerLib_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trade.cpp || cmake_object_order_depends_target_OrderClientServerLib
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trade.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
-  OBJECT_DIR = CMakeFiles/OrderClientServerLib.dir
-  OBJECT_FILE_DIR = CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src
-  TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerLib.dir/OrderClientServerLib.pdb
-  TARGET_PDB = libOrderClientServerLib.pdb
-
-build CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trader.cpp.o: CXX_COMPILER__OrderClientServerLib_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trader.cpp || cmake_object_order_depends_target_OrderClientServerLib
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trader.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
-  OBJECT_DIR = CMakeFiles/OrderClientServerLib.dir
-  OBJECT_FILE_DIR = CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src
   TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerLib.dir/OrderClientServerLib.pdb
   TARGET_PDB = libOrderClientServerLib.pdb
 
@@ -142,7 +94,7 @@ build CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/
 #############################################
 # Link the static library libOrderClientServerLib.a
 
-build libOrderClientServerLib.a: CXX_STATIC_LIBRARY_LINKER__OrderClientServerLib_ CMakeFiles/OrderClientServerLib.dir/src/order_client_server.cpp.o CMakeFiles/OrderClientServerLib.dir/src/order_service.cpp.o CMakeFiles/OrderClientServerLib.dir/order_service.pb.cc.o CMakeFiles/OrderClientServerLib.dir/order_service.grpc.pb.cc.o CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order.cpp.o CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/order_book.cpp.o CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/prioritizable_value_st.cpp.o CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trade.cpp.o CMakeFiles/OrderClientServerLib.dir/home/tembolo381/Desktop/cpp-workspace/TraderHub/TradingEngine/src/trader.cpp.o || /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2 /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
+build libOrderClientServerLib.a: CXX_STATIC_LIBRARY_LINKER__OrderClientServerLib_ CMakeFiles/OrderClientServerLib.dir/src/order_client_server.cpp.o CMakeFiles/OrderClientServerLib.dir/src/order_service.cpp.o CMakeFiles/OrderClientServerLib.dir/order_service.pb.cc.o CMakeFiles/OrderClientServerLib.dir/order_service.grpc.pb.cc.o || generate_protos /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2 /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
   OBJECT_DIR = CMakeFiles/OrderClientServerLib.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -160,10 +112,9 @@ build libOrderClientServerLib.a: CXX_STATIC_LIBRARY_LINKER__OrderClientServerLib
 build cmake_object_order_depends_target_OrderServer: phony || cmake_object_order_depends_target_OrderClientServerLib
 
 build CMakeFiles/OrderServer.dir/src/main.cpp.o: CXX_COMPILER__OrderServer_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/main.cpp || cmake_object_order_depends_target_OrderServer
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
   DEP_FILE = CMakeFiles/OrderServer.dir/src/main.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
+  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build
   OBJECT_DIR = CMakeFiles/OrderServer.dir
   OBJECT_FILE_DIR = CMakeFiles/OrderServer.dir/src
   TARGET_COMPILE_PDB = CMakeFiles/OrderServer.dir/
@@ -177,8 +128,8 @@ build CMakeFiles/OrderServer.dir/src/main.cpp.o: CXX_COMPILER__OrderServer_ /hom
 #############################################
 # Link the executable OrderServer
 
-build OrderServer: CXX_EXECUTABLE_LINKER__OrderServer_ CMakeFiles/OrderServer.dir/src/main.cpp.o | libOrderClientServerLib.a /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2 /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1 /usr/local/lib/libgrpc++.a /usr/local/lib/libprotobuf.a /usr/local/lib/libgrpc.a /usr/local/lib/libz.a /usr/local/lib/libcares.a /usr/local/lib/libaddress_sorting.a /usr/local/lib/libre2.a /usr/local/lib/libabsl_raw_hash_set.a /usr/local/lib/libabsl_hashtablez_sampler.a /usr/local/lib/libabsl_exponential_biased.a /usr/local/lib/libabsl_hash.a /usr/local/lib/libabsl_city.a /usr/local/lib/libabsl_wyhash.a /usr/local/lib/libabsl_statusor.a /usr/local/lib/libabsl_bad_variant_access.a /usr/local/lib/libgpr.a /usr/local/lib/libupb.a /usr/local/lib/libabsl_status.a /usr/local/lib/libabsl_cord.a /usr/local/lib/libabsl_bad_optional_access.a /usr/local/lib/libabsl_str_format_internal.a /usr/local/lib/libabsl_synchronization.a /usr/local/lib/libabsl_stacktrace.a /usr/local/lib/libabsl_symbolize.a /usr/local/lib/libabsl_debugging_internal.a /usr/local/lib/libabsl_demangle_internal.a /usr/local/lib/libabsl_graphcycles_internal.a /usr/local/lib/libabsl_malloc_internal.a /usr/local/lib/libabsl_time.a /usr/local/lib/libabsl_strings.a /usr/local/lib/libabsl_throw_delegate.a /usr/local/lib/libabsl_int128.a /usr/local/lib/libabsl_strings_internal.a /usr/local/lib/libabsl_base.a /usr/local/lib/libabsl_raw_logging_internal.a /usr/local/lib/libabsl_log_severity.a /usr/local/lib/libabsl_spinlock_wait.a /usr/local/lib/libabsl_civil_time.a /usr/local/lib/libabsl_time_zone.a /usr/local/lib/libssl.a /usr/local/lib/libcrypto.a || libOrderClientServerLib.a
-  LINK_LIBRARIES = libOrderClientServerLib.a  /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2  /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1  -Wl,--as-needed  /usr/local/lib/libgrpc++.a  /usr/local/lib/libprotobuf.a  /usr/local/lib/libgrpc.a  /usr/local/lib/libz.a  /usr/local/lib/libcares.a  -lnsl  /usr/local/lib/libaddress_sorting.a  /usr/local/lib/libre2.a  /usr/local/lib/libabsl_raw_hash_set.a  /usr/local/lib/libabsl_hashtablez_sampler.a  /usr/local/lib/libabsl_exponential_biased.a  /usr/local/lib/libabsl_hash.a  /usr/local/lib/libabsl_city.a  /usr/local/lib/libabsl_wyhash.a  /usr/local/lib/libabsl_statusor.a  /usr/local/lib/libabsl_bad_variant_access.a  /usr/local/lib/libgpr.a  /usr/local/lib/libupb.a  -ldl  -lrt  -lm  /usr/local/lib/libabsl_status.a  /usr/local/lib/libabsl_cord.a  /usr/local/lib/libabsl_bad_optional_access.a  /usr/local/lib/libabsl_str_format_internal.a  /usr/local/lib/libabsl_synchronization.a  /usr/local/lib/libabsl_stacktrace.a  /usr/local/lib/libabsl_symbolize.a  /usr/local/lib/libabsl_debugging_internal.a  /usr/local/lib/libabsl_demangle_internal.a  /usr/local/lib/libabsl_graphcycles_internal.a  /usr/local/lib/libabsl_malloc_internal.a  /usr/local/lib/libabsl_time.a  /usr/local/lib/libabsl_strings.a  /usr/local/lib/libabsl_throw_delegate.a  /usr/local/lib/libabsl_int128.a  /usr/local/lib/libabsl_strings_internal.a  /usr/local/lib/libabsl_base.a  /usr/local/lib/libabsl_raw_logging_internal.a  /usr/local/lib/libabsl_log_severity.a  /usr/local/lib/libabsl_spinlock_wait.a  -lrt  /usr/local/lib/libabsl_civil_time.a  /usr/local/lib/libabsl_time_zone.a  /usr/local/lib/libssl.a  /usr/local/lib/libcrypto.a  -lpthread
+build OrderServer: CXX_EXECUTABLE_LINKER__OrderServer_ CMakeFiles/OrderServer.dir/src/main.cpp.o | libOrderClientServerLib.a /usr/local/lib/libgrpc++.a /usr/local/lib/libprotobuf.a /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2 /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1 /usr/local/lib/libgrpc.a /usr/local/lib/libz.a /usr/local/lib/libcares.a /usr/local/lib/libaddress_sorting.a /usr/local/lib/libre2.a /usr/local/lib/libabsl_raw_hash_set.a /usr/local/lib/libabsl_hashtablez_sampler.a /usr/local/lib/libabsl_exponential_biased.a /usr/local/lib/libabsl_hash.a /usr/local/lib/libabsl_city.a /usr/local/lib/libabsl_wyhash.a /usr/local/lib/libabsl_statusor.a /usr/local/lib/libabsl_bad_variant_access.a /usr/local/lib/libgpr.a /usr/local/lib/libupb.a /usr/local/lib/libabsl_status.a /usr/local/lib/libabsl_cord.a /usr/local/lib/libabsl_bad_optional_access.a /usr/local/lib/libabsl_str_format_internal.a /usr/local/lib/libabsl_synchronization.a /usr/local/lib/libabsl_stacktrace.a /usr/local/lib/libabsl_symbolize.a /usr/local/lib/libabsl_debugging_internal.a /usr/local/lib/libabsl_demangle_internal.a /usr/local/lib/libabsl_graphcycles_internal.a /usr/local/lib/libabsl_malloc_internal.a /usr/local/lib/libabsl_time.a /usr/local/lib/libabsl_strings.a /usr/local/lib/libabsl_throw_delegate.a /usr/local/lib/libabsl_int128.a /usr/local/lib/libabsl_strings_internal.a /usr/local/lib/libabsl_base.a /usr/local/lib/libabsl_raw_logging_internal.a /usr/local/lib/libabsl_log_severity.a /usr/local/lib/libabsl_spinlock_wait.a /usr/local/lib/libabsl_civil_time.a /usr/local/lib/libabsl_time_zone.a /usr/local/lib/libssl.a /usr/local/lib/libcrypto.a || libOrderClientServerLib.a
+  LINK_LIBRARIES = libOrderClientServerLib.a  /usr/local/lib/libgrpc++.a  /usr/local/lib/libprotobuf.a  /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2  /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1  -Wl,--as-needed  /usr/local/lib/libgrpc.a  /usr/local/lib/libz.a  /usr/local/lib/libcares.a  -lnsl  /usr/local/lib/libaddress_sorting.a  /usr/local/lib/libre2.a  /usr/local/lib/libabsl_raw_hash_set.a  /usr/local/lib/libabsl_hashtablez_sampler.a  /usr/local/lib/libabsl_exponential_biased.a  /usr/local/lib/libabsl_hash.a  /usr/local/lib/libabsl_city.a  /usr/local/lib/libabsl_wyhash.a  /usr/local/lib/libabsl_statusor.a  /usr/local/lib/libabsl_bad_variant_access.a  /usr/local/lib/libgpr.a  /usr/local/lib/libupb.a  -ldl  -lrt  -lm  /usr/local/lib/libabsl_status.a  /usr/local/lib/libabsl_cord.a  /usr/local/lib/libabsl_bad_optional_access.a  /usr/local/lib/libabsl_str_format_internal.a  /usr/local/lib/libabsl_synchronization.a  /usr/local/lib/libabsl_stacktrace.a  /usr/local/lib/libabsl_symbolize.a  /usr/local/lib/libabsl_debugging_internal.a  /usr/local/lib/libabsl_demangle_internal.a  /usr/local/lib/libabsl_graphcycles_internal.a  /usr/local/lib/libabsl_malloc_internal.a  /usr/local/lib/libabsl_time.a  /usr/local/lib/libabsl_strings.a  /usr/local/lib/libabsl_throw_delegate.a  /usr/local/lib/libabsl_int128.a  /usr/local/lib/libabsl_strings_internal.a  /usr/local/lib/libabsl_base.a  /usr/local/lib/libabsl_raw_logging_internal.a  /usr/local/lib/libabsl_log_severity.a  /usr/local/lib/libabsl_spinlock_wait.a  -lrt  /usr/local/lib/libabsl_civil_time.a  /usr/local/lib/libabsl_time_zone.a  /usr/local/lib/libssl.a  /usr/local/lib/libcrypto.a  -lpthread
   OBJECT_DIR = CMakeFiles/OrderServer.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -193,13 +144,12 @@ build OrderServer: CXX_EXECUTABLE_LINKER__OrderServer_ CMakeFiles/OrderServer.di
 #############################################
 # Order-only phony target for OrderClient
 
-build cmake_object_order_depends_target_OrderClient: phony || order_service.grpc.pb.cc order_service.grpc.pb.h order_service.pb.cc order_service.pb.h
+build cmake_object_order_depends_target_OrderClient: phony || cmake_object_order_depends_target_OrderClientServerLib order_service.grpc.pb.cc order_service.grpc.pb.h order_service.pb.cc order_service.pb.h
 
 build CMakeFiles/OrderClient.dir/src/order_client_main.cpp.o: CXX_COMPILER__OrderClient_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/src/order_client_main.cpp || cmake_object_order_depends_target_OrderClient
   DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
   DEP_FILE = CMakeFiles/OrderClient.dir/src/order_client_main.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
+  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build
   OBJECT_DIR = CMakeFiles/OrderClient.dir
   OBJECT_FILE_DIR = CMakeFiles/OrderClient.dir/src
   TARGET_COMPILE_PDB = CMakeFiles/OrderClient.dir/
@@ -208,8 +158,7 @@ build CMakeFiles/OrderClient.dir/src/order_client_main.cpp.o: CXX_COMPILER__Orde
 build CMakeFiles/OrderClient.dir/order_service.pb.cc.o: CXX_COMPILER__OrderClient_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.pb.cc || cmake_object_order_depends_target_OrderClient
   DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
   DEP_FILE = CMakeFiles/OrderClient.dir/order_service.pb.cc.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
+  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build
   OBJECT_DIR = CMakeFiles/OrderClient.dir
   OBJECT_FILE_DIR = CMakeFiles/OrderClient.dir
   TARGET_COMPILE_PDB = CMakeFiles/OrderClient.dir/
@@ -218,8 +167,7 @@ build CMakeFiles/OrderClient.dir/order_service.pb.cc.o: CXX_COMPILER__OrderClien
 build CMakeFiles/OrderClient.dir/order_service.grpc.pb.cc.o: CXX_COMPILER__OrderClient_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/order_service.grpc.pb.cc || cmake_object_order_depends_target_OrderClient
   DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
   DEP_FILE = CMakeFiles/OrderClient.dir/order_service.grpc.pb.cc.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
+  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build
   OBJECT_DIR = CMakeFiles/OrderClient.dir
   OBJECT_FILE_DIR = CMakeFiles/OrderClient.dir
   TARGET_COMPILE_PDB = CMakeFiles/OrderClient.dir/
@@ -233,8 +181,8 @@ build CMakeFiles/OrderClient.dir/order_service.grpc.pb.cc.o: CXX_COMPILER__Order
 #############################################
 # Link the executable OrderClient
 
-build OrderClient: CXX_EXECUTABLE_LINKER__OrderClient_ CMakeFiles/OrderClient.dir/src/order_client_main.cpp.o CMakeFiles/OrderClient.dir/order_service.pb.cc.o CMakeFiles/OrderClient.dir/order_service.grpc.pb.cc.o | /usr/local/lib/libprotobuf.a /usr/local/lib/libgrpc++.a /usr/local/lib/libgrpc.a /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2 /usr/local/lib/libprotobuf.a /usr/local/lib/libz.a /usr/local/lib/libcares.a /usr/local/lib/libaddress_sorting.a /usr/local/lib/libre2.a /usr/local/lib/libabsl_raw_hash_set.a /usr/local/lib/libabsl_hashtablez_sampler.a /usr/local/lib/libabsl_exponential_biased.a /usr/local/lib/libabsl_hash.a /usr/local/lib/libabsl_city.a /usr/local/lib/libabsl_wyhash.a /usr/local/lib/libabsl_statusor.a /usr/local/lib/libabsl_bad_variant_access.a /usr/local/lib/libgpr.a /usr/local/lib/libupb.a /usr/local/lib/libabsl_status.a /usr/local/lib/libabsl_cord.a /usr/local/lib/libabsl_bad_optional_access.a /usr/local/lib/libabsl_str_format_internal.a /usr/local/lib/libabsl_synchronization.a /usr/local/lib/libabsl_stacktrace.a /usr/local/lib/libabsl_symbolize.a /usr/local/lib/libabsl_debugging_internal.a /usr/local/lib/libabsl_demangle_internal.a /usr/local/lib/libabsl_graphcycles_internal.a /usr/local/lib/libabsl_malloc_internal.a /usr/local/lib/libabsl_time.a /usr/local/lib/libabsl_strings.a /usr/local/lib/libabsl_throw_delegate.a /usr/local/lib/libabsl_int128.a /usr/local/lib/libabsl_strings_internal.a /usr/local/lib/libabsl_base.a /usr/local/lib/libabsl_raw_logging_internal.a /usr/local/lib/libabsl_log_severity.a /usr/local/lib/libabsl_spinlock_wait.a /usr/local/lib/libabsl_civil_time.a /usr/local/lib/libabsl_time_zone.a /usr/local/lib/libssl.a /usr/local/lib/libcrypto.a /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
-  LINK_LIBRARIES = /usr/local/lib/libprotobuf.a  /usr/local/lib/libgrpc++.a  /usr/local/lib/libgrpc.a  /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2  /usr/local/lib/libprotobuf.a  /usr/local/lib/libz.a  /usr/local/lib/libcares.a  -lnsl  /usr/local/lib/libaddress_sorting.a  /usr/local/lib/libre2.a  /usr/local/lib/libabsl_raw_hash_set.a  /usr/local/lib/libabsl_hashtablez_sampler.a  /usr/local/lib/libabsl_exponential_biased.a  /usr/local/lib/libabsl_hash.a  /usr/local/lib/libabsl_city.a  /usr/local/lib/libabsl_wyhash.a  /usr/local/lib/libabsl_statusor.a  /usr/local/lib/libabsl_bad_variant_access.a  /usr/local/lib/libgpr.a  /usr/local/lib/libupb.a  /usr/local/lib/libabsl_status.a  /usr/local/lib/libabsl_cord.a  /usr/local/lib/libabsl_bad_optional_access.a  /usr/local/lib/libabsl_str_format_internal.a  /usr/local/lib/libabsl_synchronization.a  /usr/local/lib/libabsl_stacktrace.a  /usr/local/lib/libabsl_symbolize.a  /usr/local/lib/libabsl_debugging_internal.a  /usr/local/lib/libabsl_demangle_internal.a  /usr/local/lib/libabsl_graphcycles_internal.a  /usr/local/lib/libabsl_malloc_internal.a  /usr/local/lib/libabsl_time.a  /usr/local/lib/libabsl_strings.a  /usr/local/lib/libabsl_throw_delegate.a  /usr/local/lib/libabsl_int128.a  /usr/local/lib/libabsl_strings_internal.a  /usr/local/lib/libabsl_base.a  /usr/local/lib/libabsl_raw_logging_internal.a  /usr/local/lib/libabsl_log_severity.a  /usr/local/lib/libabsl_spinlock_wait.a  -lrt  /usr/local/lib/libabsl_civil_time.a  /usr/local/lib/libabsl_time_zone.a  /usr/local/lib/libssl.a  /usr/local/lib/libcrypto.a  -ldl  -lrt  -lm  -lpthread  /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1  -Wl,--as-needed
+build OrderClient: CXX_EXECUTABLE_LINKER__OrderClient_ CMakeFiles/OrderClient.dir/src/order_client_main.cpp.o CMakeFiles/OrderClient.dir/order_service.pb.cc.o CMakeFiles/OrderClient.dir/order_service.grpc.pb.cc.o | libOrderClientServerLib.a /usr/local/lib/libprotobuf.a /usr/local/lib/libgrpc++.a /usr/local/lib/libgrpc.a /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2 /usr/local/lib/libprotobuf.a /usr/local/lib/libz.a /usr/local/lib/libcares.a /usr/local/lib/libaddress_sorting.a /usr/local/lib/libre2.a /usr/local/lib/libabsl_raw_hash_set.a /usr/local/lib/libabsl_hashtablez_sampler.a /usr/local/lib/libabsl_exponential_biased.a /usr/local/lib/libabsl_hash.a /usr/local/lib/libabsl_city.a /usr/local/lib/libabsl_wyhash.a /usr/local/lib/libabsl_statusor.a /usr/local/lib/libabsl_bad_variant_access.a /usr/local/lib/libgpr.a /usr/local/lib/libupb.a /usr/local/lib/libabsl_status.a /usr/local/lib/libabsl_cord.a /usr/local/lib/libabsl_bad_optional_access.a /usr/local/lib/libabsl_str_format_internal.a /usr/local/lib/libabsl_synchronization.a /usr/local/lib/libabsl_stacktrace.a /usr/local/lib/libabsl_symbolize.a /usr/local/lib/libabsl_debugging_internal.a /usr/local/lib/libabsl_demangle_internal.a /usr/local/lib/libabsl_graphcycles_internal.a /usr/local/lib/libabsl_malloc_internal.a /usr/local/lib/libabsl_time.a /usr/local/lib/libabsl_strings.a /usr/local/lib/libabsl_throw_delegate.a /usr/local/lib/libabsl_int128.a /usr/local/lib/libabsl_strings_internal.a /usr/local/lib/libabsl_base.a /usr/local/lib/libabsl_raw_logging_internal.a /usr/local/lib/libabsl_log_severity.a /usr/local/lib/libabsl_spinlock_wait.a /usr/local/lib/libabsl_civil_time.a /usr/local/lib/libabsl_time_zone.a /usr/local/lib/libssl.a /usr/local/lib/libcrypto.a /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1 || libOrderClientServerLib.a
+  LINK_LIBRARIES = libOrderClientServerLib.a  /usr/local/lib/libprotobuf.a  /usr/local/lib/libgrpc++.a  /usr/local/lib/libgrpc.a  /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2  /usr/local/lib/libprotobuf.a  /usr/local/lib/libz.a  /usr/local/lib/libcares.a  -lnsl  /usr/local/lib/libaddress_sorting.a  /usr/local/lib/libre2.a  /usr/local/lib/libabsl_raw_hash_set.a  /usr/local/lib/libabsl_hashtablez_sampler.a  /usr/local/lib/libabsl_exponential_biased.a  /usr/local/lib/libabsl_hash.a  /usr/local/lib/libabsl_city.a  /usr/local/lib/libabsl_wyhash.a  /usr/local/lib/libabsl_statusor.a  /usr/local/lib/libabsl_bad_variant_access.a  /usr/local/lib/libgpr.a  /usr/local/lib/libupb.a  -ldl  -lrt  -lm  /usr/local/lib/libabsl_status.a  /usr/local/lib/libabsl_cord.a  /usr/local/lib/libabsl_bad_optional_access.a  /usr/local/lib/libabsl_str_format_internal.a  /usr/local/lib/libabsl_synchronization.a  /usr/local/lib/libabsl_stacktrace.a  /usr/local/lib/libabsl_symbolize.a  /usr/local/lib/libabsl_debugging_internal.a  /usr/local/lib/libabsl_demangle_internal.a  /usr/local/lib/libabsl_graphcycles_internal.a  /usr/local/lib/libabsl_malloc_internal.a  /usr/local/lib/libabsl_time.a  /usr/local/lib/libabsl_strings.a  /usr/local/lib/libabsl_throw_delegate.a  /usr/local/lib/libabsl_int128.a  /usr/local/lib/libabsl_strings_internal.a  /usr/local/lib/libabsl_base.a  /usr/local/lib/libabsl_raw_logging_internal.a  /usr/local/lib/libabsl_log_severity.a  /usr/local/lib/libabsl_spinlock_wait.a  -lrt  /usr/local/lib/libabsl_civil_time.a  /usr/local/lib/libabsl_time_zone.a  /usr/local/lib/libssl.a  /usr/local/lib/libcrypto.a  -lpthread  /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1  -Wl,--as-needed
   OBJECT_DIR = CMakeFiles/OrderClient.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -252,10 +200,10 @@ build OrderClient: CXX_EXECUTABLE_LINKER__OrderClient_ CMakeFiles/OrderClient.di
 build cmake_object_order_depends_target_OrderClientServerTests: phony || cmake_object_order_depends_target_OrderClientServerLib
 
 build CMakeFiles/OrderClientServerTests.dir/tests/order_client_server_tests.cpp.o: CXX_COMPILER__OrderClientServerTests_ /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/tests/order_client_server_tests.cpp || cmake_object_order_depends_target_OrderClientServerTests
-  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DCARES_STATICLIB -DFMT_LOCALE -DFMT_SHARED -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
   DEP_FILE = CMakeFiles/OrderClientServerTests.dir/tests/order_client_server_tests.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -DGTEST_HAS_PTHREAD=1 -std=gnu++20
-  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/../TradingEngine/include
+  FLAGS = -DGTEST_HAS_PTHREAD=1
+  INCLUDES = -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/include -I/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build
   OBJECT_DIR = CMakeFiles/OrderClientServerTests.dir
   OBJECT_FILE_DIR = CMakeFiles/OrderClientServerTests.dir/tests
   TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerTests.dir/
@@ -269,11 +217,12 @@ build CMakeFiles/OrderClientServerTests.dir/tests/order_client_server_tests.cpp.
 #############################################
 # Link the executable OrderClientServerTests
 
-build OrderClientServerTests: CXX_EXECUTABLE_LINKER__OrderClientServerTests_ CMakeFiles/OrderClientServerTests.dir/tests/order_client_server_tests.cpp.o | libOrderClientServerLib.a /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2 /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1 /usr/local/lib/libgrpc++.a /usr/local/lib/libprotobuf.a /usr/local/lib/libgrpc.a /usr/local/lib/libz.a /usr/local/lib/libcares.a /usr/local/lib/libaddress_sorting.a /usr/local/lib/libre2.a /usr/local/lib/libabsl_raw_hash_set.a /usr/local/lib/libabsl_hashtablez_sampler.a /usr/local/lib/libabsl_exponential_biased.a /usr/local/lib/libabsl_hash.a /usr/local/lib/libabsl_city.a /usr/local/lib/libabsl_wyhash.a /usr/local/lib/libabsl_statusor.a /usr/local/lib/libabsl_bad_variant_access.a /usr/local/lib/libgpr.a /usr/local/lib/libupb.a /usr/local/lib/libabsl_status.a /usr/local/lib/libabsl_cord.a /usr/local/lib/libabsl_bad_optional_access.a /usr/local/lib/libabsl_str_format_internal.a /usr/local/lib/libabsl_synchronization.a /usr/local/lib/libabsl_stacktrace.a /usr/local/lib/libabsl_symbolize.a /usr/local/lib/libabsl_debugging_internal.a /usr/local/lib/libabsl_demangle_internal.a /usr/local/lib/libabsl_graphcycles_internal.a /usr/local/lib/libabsl_malloc_internal.a /usr/local/lib/libabsl_time.a /usr/local/lib/libabsl_strings.a /usr/local/lib/libabsl_throw_delegate.a /usr/local/lib/libabsl_int128.a /usr/local/lib/libabsl_strings_internal.a /usr/local/lib/libabsl_base.a /usr/local/lib/libabsl_raw_logging_internal.a /usr/local/lib/libabsl_log_severity.a /usr/local/lib/libabsl_spinlock_wait.a /usr/local/lib/libabsl_civil_time.a /usr/local/lib/libabsl_time_zone.a /usr/local/lib/libssl.a /usr/local/lib/libcrypto.a /usr/lib/x86_64-linux-gnu/libgtest_main.a /usr/lib/x86_64-linux-gnu/libgtest.a || libOrderClientServerLib.a
-  LINK_LIBRARIES = libOrderClientServerLib.a  /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2  /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1  -Wl,--as-needed  /usr/local/lib/libgrpc++.a  /usr/local/lib/libprotobuf.a  /usr/local/lib/libgrpc.a  /usr/local/lib/libz.a  /usr/local/lib/libcares.a  -lnsl  /usr/local/lib/libaddress_sorting.a  /usr/local/lib/libre2.a  /usr/local/lib/libabsl_raw_hash_set.a  /usr/local/lib/libabsl_hashtablez_sampler.a  /usr/local/lib/libabsl_exponential_biased.a  /usr/local/lib/libabsl_hash.a  /usr/local/lib/libabsl_city.a  /usr/local/lib/libabsl_wyhash.a  /usr/local/lib/libabsl_statusor.a  /usr/local/lib/libabsl_bad_variant_access.a  /usr/local/lib/libgpr.a  /usr/local/lib/libupb.a  -ldl  -lrt  -lm  /usr/local/lib/libabsl_status.a  /usr/local/lib/libabsl_cord.a  /usr/local/lib/libabsl_bad_optional_access.a  /usr/local/lib/libabsl_str_format_internal.a  /usr/local/lib/libabsl_synchronization.a  /usr/local/lib/libabsl_stacktrace.a  /usr/local/lib/libabsl_symbolize.a  /usr/local/lib/libabsl_debugging_internal.a  /usr/local/lib/libabsl_demangle_internal.a  /usr/local/lib/libabsl_graphcycles_internal.a  /usr/local/lib/libabsl_malloc_internal.a  /usr/local/lib/libabsl_time.a  /usr/local/lib/libabsl_strings.a  /usr/local/lib/libabsl_throw_delegate.a  /usr/local/lib/libabsl_int128.a  /usr/local/lib/libabsl_strings_internal.a  /usr/local/lib/libabsl_base.a  /usr/local/lib/libabsl_raw_logging_internal.a  /usr/local/lib/libabsl_log_severity.a  /usr/local/lib/libabsl_spinlock_wait.a  -lrt  /usr/local/lib/libabsl_civil_time.a  /usr/local/lib/libabsl_time_zone.a  /usr/local/lib/libssl.a  /usr/local/lib/libcrypto.a  -lpthread  /usr/lib/x86_64-linux-gnu/libgtest_main.a  /usr/lib/x86_64-linux-gnu/libgtest.a
+build OrderClientServerTests OrderClientServerTests[1]_tests.cmake | ${cmake_ninja_workdir}OrderClientServerTests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__OrderClientServerTests_ CMakeFiles/OrderClientServerTests.dir/tests/order_client_server_tests.cpp.o | libOrderClientServerLib.a /usr/local/lib/libgrpc++.a /usr/local/lib/libprotobuf.a /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2 /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1 /usr/local/lib/libgrpc.a /usr/local/lib/libz.a /usr/local/lib/libcares.a /usr/local/lib/libaddress_sorting.a /usr/local/lib/libre2.a /usr/local/lib/libabsl_raw_hash_set.a /usr/local/lib/libabsl_hashtablez_sampler.a /usr/local/lib/libabsl_exponential_biased.a /usr/local/lib/libabsl_hash.a /usr/local/lib/libabsl_city.a /usr/local/lib/libabsl_wyhash.a /usr/local/lib/libabsl_statusor.a /usr/local/lib/libabsl_bad_variant_access.a /usr/local/lib/libgpr.a /usr/local/lib/libupb.a /usr/local/lib/libabsl_status.a /usr/local/lib/libabsl_cord.a /usr/local/lib/libabsl_bad_optional_access.a /usr/local/lib/libabsl_str_format_internal.a /usr/local/lib/libabsl_synchronization.a /usr/local/lib/libabsl_stacktrace.a /usr/local/lib/libabsl_symbolize.a /usr/local/lib/libabsl_debugging_internal.a /usr/local/lib/libabsl_demangle_internal.a /usr/local/lib/libabsl_graphcycles_internal.a /usr/local/lib/libabsl_malloc_internal.a /usr/local/lib/libabsl_time.a /usr/local/lib/libabsl_strings.a /usr/local/lib/libabsl_throw_delegate.a /usr/local/lib/libabsl_int128.a /usr/local/lib/libabsl_strings_internal.a /usr/local/lib/libabsl_base.a /usr/local/lib/libabsl_raw_logging_internal.a /usr/local/lib/libabsl_log_severity.a /usr/local/lib/libabsl_spinlock_wait.a /usr/local/lib/libabsl_civil_time.a /usr/local/lib/libabsl_time_zone.a /usr/local/lib/libssl.a /usr/local/lib/libcrypto.a /usr/lib/x86_64-linux-gnu/libgtest_main.a /usr/lib/x86_64-linux-gnu/libgtest.a || libOrderClientServerLib.a
+  LINK_LIBRARIES = libOrderClientServerLib.a  /usr/local/lib/libgrpc++.a  /usr/local/lib/libprotobuf.a  /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2  /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1  -Wl,--as-needed  /usr/local/lib/libgrpc.a  /usr/local/lib/libz.a  /usr/local/lib/libcares.a  -lnsl  /usr/local/lib/libaddress_sorting.a  /usr/local/lib/libre2.a  /usr/local/lib/libabsl_raw_hash_set.a  /usr/local/lib/libabsl_hashtablez_sampler.a  /usr/local/lib/libabsl_exponential_biased.a  /usr/local/lib/libabsl_hash.a  /usr/local/lib/libabsl_city.a  /usr/local/lib/libabsl_wyhash.a  /usr/local/lib/libabsl_statusor.a  /usr/local/lib/libabsl_bad_variant_access.a  /usr/local/lib/libgpr.a  /usr/local/lib/libupb.a  -ldl  -lrt  -lm  /usr/local/lib/libabsl_status.a  /usr/local/lib/libabsl_cord.a  /usr/local/lib/libabsl_bad_optional_access.a  /usr/local/lib/libabsl_str_format_internal.a  /usr/local/lib/libabsl_synchronization.a  /usr/local/lib/libabsl_stacktrace.a  /usr/local/lib/libabsl_symbolize.a  /usr/local/lib/libabsl_debugging_internal.a  /usr/local/lib/libabsl_demangle_internal.a  /usr/local/lib/libabsl_graphcycles_internal.a  /usr/local/lib/libabsl_malloc_internal.a  /usr/local/lib/libabsl_time.a  /usr/local/lib/libabsl_strings.a  /usr/local/lib/libabsl_throw_delegate.a  /usr/local/lib/libabsl_int128.a  /usr/local/lib/libabsl_strings_internal.a  /usr/local/lib/libabsl_base.a  /usr/local/lib/libabsl_raw_logging_internal.a  /usr/local/lib/libabsl_log_severity.a  /usr/local/lib/libabsl_spinlock_wait.a  -lrt  /usr/local/lib/libabsl_civil_time.a  /usr/local/lib/libabsl_time_zone.a  /usr/local/lib/libssl.a  /usr/local/lib/libcrypto.a  -lpthread  /usr/lib/x86_64-linux-gnu/libgtest_main.a  /usr/lib/x86_64-linux-gnu/libgtest.a
   OBJECT_DIR = CMakeFiles/OrderClientServerTests.dir
-  POST_BUILD = :
+  POST_BUILD = cd /home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build && /usr/bin/cmake -D TEST_TARGET=OrderClientServerTests -D TEST_EXECUTABLE=/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/OrderClientServerTests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build -D TEST_EXTRA_ARGS= -D "TEST_PROPERTIES=ENVIRONMENT;PATH=/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build:/home/tembolo381/.local/bin:/usr/lib/jvm/java-17-openjdk-amd64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin" -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=OrderClientServerTests_TESTS -D CTEST_FILE=/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/OrderClientServerTests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.22/Modules/GoogleTestAddTests.cmake
   PRE_LINK = :
+  RESTAT = 1
   TARGET_COMPILE_PDB = CMakeFiles/OrderClientServerTests.dir/
   TARGET_FILE = OrderClientServerTests
   TARGET_PDB = OrderClientServerTests.pdb
@@ -354,6 +303,12 @@ build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
   restat = 1
 
 build install/strip: phony CMakeFiles/install/strip.util
+
+
+#############################################
+# Phony custom command for CMakeFiles/generate_protos
+
+build CMakeFiles/generate_protos | ${cmake_ninja_workdir}CMakeFiles/generate_protos: phony order_service.pb.cc order_service.grpc.pb.cc order_service.pb.h order_service.grpc.pb.h
 
 
 #############################################

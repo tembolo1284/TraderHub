@@ -1,6 +1,19 @@
 // src/order_service.cpp
 #include "order_service.hpp"
 #include <spdlog/spdlog.h>
+#include <chrono>
+#include <iomanip>
+#include <thread>
+
+namespace {
+    std::string getCurrentTimestamp() {
+        auto now = std::chrono::system_clock::now();
+        auto now_c = std::chrono::system_clock::to_time_t(now);
+        std::stringstream ss;
+        ss << std::put_time(std::localtime(&now_c), "%Y-%m-%d %H:%M:%S");
+        return ss.str();
+    }
+}
 
 OrderServiceImpl::OrderServiceImpl(std::shared_ptr<OrderClientServer> server)
     : server_(std::move(server)) {
@@ -9,90 +22,97 @@ OrderServiceImpl::OrderServiceImpl(std::shared_ptr<OrderClientServer> server)
     }
 }
 
-grpc::Status OrderServiceImpl::SubmitOrder(
-    [[maybe_unused]] grpc::ServerContext* context,
-    const order_service::OrderRequest* request,
-    order_service::OrderResponse* response) {
+grpc::Status OrderServiceImpl::SubmitOrder(grpc::ServerContext* context,
+                                         const order_service::OrderRequest* request,
+                                         order_service::OrderResponse* response) {
     try {
-        if (!request) {
-            return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Null request");
-        }
-
-        auto result = server_->submitOrder(
-            request->order_id(),
-            request->trader_id(),
-            request->stock_symbol(),
-            request->price(),
-            request->quantity(),
-            request->is_buy_order()
-        );
-
-        response->set_status(result.status);
-        response->set_matched_price(result.price);
-        response->set_matched_quantity(result.quantity);
-
+        spdlog::info("Received order: ID={}, Symbol={}, Price={}, Qty={}, Side={}", 
+            request->details().order_id(),
+            request->details().stock_symbol(),
+            request->details().price(),
+            request->details().quantity(),
+            request->details().is_buy_order() ? "BUY" : "SELL");
+        
+        *response = server_->submitOrder(*request);
         return grpc::Status::OK;
     }
-    catch (const OrderError& e) {
-        return grpc::Status(grpc::StatusCode::INTERNAL, e.what());
-    }
     catch (const std::exception& e) {
-        return grpc::Status(grpc::StatusCode::INTERNAL, "Internal error");
+        spdlog::error("Failed to submit order: {}", e.what());
+        return grpc::Status(grpc::StatusCode::INTERNAL, 
+                          std::string("Failed to submit order: ") + e.what());
     }
 }
 
-grpc::Status OrderServiceImpl::CancelOrder(
-    [[maybe_unused]] grpc::ServerContext* context,
-    const order_service::CancelRequest* request,
-    order_service::CancelResponse* response) {
+grpc::Status OrderServiceImpl::CancelOrder(grpc::ServerContext* context,
+                                         const order_service::CancelRequest* request,
+                                         order_service::CancelResponse* response) {
     try {
-        if (!request) {
-            return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Null request");
-        }
+        spdlog::info("Received cancel request: Order ID={}, Side={}", 
+            request->order_id(),
+            request->is_buy_order() ? "BUY" : "SELL");
+        
+        *response = server_->cancelOrder(*request);
+        response->set_timestamp(getCurrentTimestamp());
+        return grpc::Status::OK;
+    }
+    catch (const std::exception& e) {
+        spdlog::error("Failed to cancel order: {}", e.what());
+        return grpc::Status(grpc::StatusCode::INTERNAL, 
+                          std::string("Failed to cancel order: ") + e.what());
+    }
+}
 
-        auto status = server_->cancelOrder(request->order_id(), request->is_buy_order());
-        response->set_status(status);
+grpc::Status OrderServiceImpl::ViewOrderBook(grpc::ServerContext* context,
+                                           const order_service::ViewOrderBookRequest* request,
+                                           order_service::ViewOrderBookResponse* response) {
+    try {
+        spdlog::info("Received order book request{}", 
+            request->symbol().empty() ? "" : " for symbol " + request->symbol());
+        
+        *response = server_->getOrderBook(*request);
+        response->set_timestamp(getCurrentTimestamp());
+        
+        spdlog::info("Returning order book with {} buy orders and {} sell orders",
+                    response->buy_orders_size(),
+                    response->sell_orders_size());
         
         return grpc::Status::OK;
     }
     catch (const std::exception& e) {
-        return grpc::Status(grpc::StatusCode::INTERNAL, "Internal error");
+        spdlog::error("Failed to get order book: {}", e.what());
+        return grpc::Status(grpc::StatusCode::INTERNAL, 
+                          std::string("Failed to get order book: ") + e.what());
     }
 }
 
-grpc::Status OrderServiceImpl::ViewOrderBook(
-    [[maybe_unused]] grpc::ServerContext* context,
-    const order_service::ViewOrderBookRequest* request,
-    order_service::ViewOrderBookResponse* response) {
-    
+grpc::Status OrderServiceImpl::StreamOrderBook(grpc::ServerContext* context,
+                                             const order_service::ViewOrderBookRequest* request,
+                                             grpc::ServerWriter<order_service::ViewOrderBookResponse>* writer) {
     try {
-        auto [buy_orders, sell_orders] = server_->getOrderBook(request->symbol());
-
-        // Convert buy orders
-        for (const auto& order : buy_orders) {
-            auto* entry = response->add_buy_orders();
-            entry->set_order_id(order.getOrderId());
-            entry->set_trader_id(order.getTraderId());
-            entry->set_symbol(order.getStockSymbol());  // Changed from getSymbol to getStockSymbol
-            entry->set_price(order.getPrice());
-            entry->set_quantity(order.getQuantity());
-            entry->set_is_buy_order(true);
+        spdlog::info("Starting order book stream{}", 
+            request->symbol().empty() ? "" : " for symbol " + request->symbol());
+            
+        // Implementation for streaming updates
+        // This is a basic implementation that just sends periodic updates
+        while (!context->IsCancelled()) {
+            order_service::ViewOrderBookResponse response = server_->getOrderBook(*request);
+            response.set_timestamp(getCurrentTimestamp());
+            
+            if (!writer->Write(response)) {
+                spdlog::warn("Failed to write to stream, client may have disconnected");
+                break;
+            }
+            
+            // Sleep for a short duration before sending the next update
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
-
-        // Convert sell orders
-        for (const auto& order : sell_orders) {
-            auto* entry = response->add_sell_orders();
-            entry->set_order_id(order.getOrderId());
-            entry->set_trader_id(order.getTraderId());
-            entry->set_symbol(order.getStockSymbol());  // Changed from getSymbol to getStockSymbol
-            entry->set_price(order.getPrice());
-            entry->set_quantity(order.getQuantity());
-            entry->set_is_buy_order(false);
-        }
-
+        
+        spdlog::info("Order book stream ended");
         return grpc::Status::OK;
     }
     catch (const std::exception& e) {
-        return grpc::Status(grpc::StatusCode::INTERNAL, e.what());
+        spdlog::error("Failed to stream order book: {}", e.what());
+        return grpc::Status(grpc::StatusCode::INTERNAL, 
+                          std::string("Failed to stream order book: ") + e.what());
     }
 }

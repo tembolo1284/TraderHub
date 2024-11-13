@@ -4,8 +4,8 @@
 #include <grpcpp/grpcpp.h>
 #include "order_service.hpp"
 #include "order_client_server.hpp"
-#include "order_book.hpp"
 #include <spdlog/spdlog.h>
+// Instead of specific sink headers, we'll just use the basic functionality
 
 class TradingServer {
 public:
@@ -14,13 +14,7 @@ public:
             spdlog::info("Initializing TradingServer...");
             
             // Initialize components
-            order_book_ = std::make_shared<OrderBook>();
-            if (!order_book_) {
-                throw std::runtime_error("Failed to create OrderBook");
-            }
-            spdlog::info("OrderBook created successfully");
-
-            order_client_server_ = std::make_shared<OrderClientServer>(order_book_);
+            order_client_server_ = std::make_shared<OrderClientServer>();
             if (!order_client_server_) {
                 throw std::runtime_error("Failed to create OrderClientServer");
             }
@@ -80,7 +74,6 @@ public:
     }
 
 private:
-    std::shared_ptr<OrderBook> order_book_;
     std::shared_ptr<OrderClientServer> order_client_server_;
     std::unique_ptr<OrderServiceImpl> order_service_;
     std::unique_ptr<grpc::Server> server_;

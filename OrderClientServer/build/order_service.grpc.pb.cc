@@ -25,6 +25,7 @@ static const char* OrderService_method_names[] = {
   "/order_service.OrderService/SubmitOrder",
   "/order_service.OrderService/CancelOrder",
   "/order_service.OrderService/ViewOrderBook",
+  "/order_service.OrderService/StreamOrderBook",
 };
 
 std::unique_ptr< OrderService::Stub> OrderService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -37,6 +38,7 @@ OrderService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   : channel_(channel), rpcmethod_SubmitOrder_(OrderService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_CancelOrder_(OrderService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ViewOrderBook_(OrderService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StreamOrderBook_(OrderService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   {}
 
 ::grpc::Status OrderService::Stub::SubmitOrder(::grpc::ClientContext* context, const ::order_service::OrderRequest& request, ::order_service::OrderResponse* response) {
@@ -108,6 +110,22 @@ void OrderService::Stub::async::ViewOrderBook(::grpc::ClientContext* context, co
   return result;
 }
 
+::grpc::ClientReader< ::order_service::ViewOrderBookResponse>* OrderService::Stub::StreamOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request) {
+  return ::grpc::internal::ClientReaderFactory< ::order_service::ViewOrderBookResponse>::Create(channel_.get(), rpcmethod_StreamOrderBook_, context, request);
+}
+
+void OrderService::Stub::async::StreamOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest* request, ::grpc::ClientReadReactor< ::order_service::ViewOrderBookResponse>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::order_service::ViewOrderBookResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_StreamOrderBook_, context, request, reactor);
+}
+
+::grpc::ClientAsyncReader< ::order_service::ViewOrderBookResponse>* OrderService::Stub::AsyncStreamOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::order_service::ViewOrderBookResponse>::Create(channel_.get(), cq, rpcmethod_StreamOrderBook_, context, request, true, tag);
+}
+
+::grpc::ClientAsyncReader< ::order_service::ViewOrderBookResponse>* OrderService::Stub::PrepareAsyncStreamOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::order_service::ViewOrderBookResponse>::Create(channel_.get(), cq, rpcmethod_StreamOrderBook_, context, request, false, nullptr);
+}
+
 OrderService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       OrderService_method_names[0],
@@ -139,6 +157,16 @@ OrderService::Service::Service() {
              ::order_service::ViewOrderBookResponse* resp) {
                return service->ViewOrderBook(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      OrderService_method_names[3],
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< OrderService::Service, ::order_service::ViewOrderBookRequest, ::order_service::ViewOrderBookResponse>(
+          [](OrderService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::order_service::ViewOrderBookRequest* req,
+             ::grpc::ServerWriter<::order_service::ViewOrderBookResponse>* writer) {
+               return service->StreamOrderBook(ctx, req, writer);
+             }, this)));
 }
 
 OrderService::Service::~Service() {
@@ -162,6 +190,13 @@ OrderService::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status OrderService::Service::StreamOrderBook(::grpc::ServerContext* context, const ::order_service::ViewOrderBookRequest* request, ::grpc::ServerWriter< ::order_service::ViewOrderBookResponse>* writer) {
+  (void) context;
+  (void) request;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

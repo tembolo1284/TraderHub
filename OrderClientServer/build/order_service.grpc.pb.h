@@ -29,6 +29,7 @@
 
 namespace order_service {
 
+// Main OrderService definition
 class OrderService final {
  public:
   static constexpr char const* service_full_name() {
@@ -37,6 +38,7 @@ class OrderService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
+    // Submit a new order to the trading system
     virtual ::grpc::Status SubmitOrder(::grpc::ClientContext* context, const ::order_service::OrderRequest& request, ::order_service::OrderResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::OrderResponse>> AsyncSubmitOrder(::grpc::ClientContext* context, const ::order_service::OrderRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::OrderResponse>>(AsyncSubmitOrderRaw(context, request, cq));
@@ -44,6 +46,7 @@ class OrderService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::OrderResponse>> PrepareAsyncSubmitOrder(::grpc::ClientContext* context, const ::order_service::OrderRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::OrderResponse>>(PrepareAsyncSubmitOrderRaw(context, request, cq));
     }
+    // Cancel an existing order
     virtual ::grpc::Status CancelOrder(::grpc::ClientContext* context, const ::order_service::CancelRequest& request, ::order_service::CancelResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::CancelResponse>> AsyncCancelOrder(::grpc::ClientContext* context, const ::order_service::CancelRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::CancelResponse>>(AsyncCancelOrderRaw(context, request, cq));
@@ -51,6 +54,7 @@ class OrderService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::CancelResponse>> PrepareAsyncCancelOrder(::grpc::ClientContext* context, const ::order_service::CancelRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::CancelResponse>>(PrepareAsyncCancelOrderRaw(context, request, cq));
     }
+    // View the current order book
     virtual ::grpc::Status ViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::order_service::ViewOrderBookResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::ViewOrderBookResponse>> AsyncViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::ViewOrderBookResponse>>(AsyncViewOrderBookRaw(context, request, cq));
@@ -58,15 +62,30 @@ class OrderService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::ViewOrderBookResponse>> PrepareAsyncViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::order_service::ViewOrderBookResponse>>(PrepareAsyncViewOrderBookRaw(context, request, cq));
     }
+    // Stream of order book updates (new feature)
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::order_service::ViewOrderBookResponse>> StreamOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::order_service::ViewOrderBookResponse>>(StreamOrderBookRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::order_service::ViewOrderBookResponse>> AsyncStreamOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::order_service::ViewOrderBookResponse>>(AsyncStreamOrderBookRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::order_service::ViewOrderBookResponse>> PrepareAsyncStreamOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::order_service::ViewOrderBookResponse>>(PrepareAsyncStreamOrderBookRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
+      // Submit a new order to the trading system
       virtual void SubmitOrder(::grpc::ClientContext* context, const ::order_service::OrderRequest* request, ::order_service::OrderResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SubmitOrder(::grpc::ClientContext* context, const ::order_service::OrderRequest* request, ::order_service::OrderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Cancel an existing order
       virtual void CancelOrder(::grpc::ClientContext* context, const ::order_service::CancelRequest* request, ::order_service::CancelResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void CancelOrder(::grpc::ClientContext* context, const ::order_service::CancelRequest* request, ::order_service::CancelResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // View the current order book
       virtual void ViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest* request, ::order_service::ViewOrderBookResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest* request, ::order_service::ViewOrderBookResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Stream of order book updates (new feature)
+      virtual void StreamOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest* request, ::grpc::ClientReadReactor< ::order_service::ViewOrderBookResponse>* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -78,6 +97,9 @@ class OrderService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::order_service::CancelResponse>* PrepareAsyncCancelOrderRaw(::grpc::ClientContext* context, const ::order_service::CancelRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::order_service::ViewOrderBookResponse>* AsyncViewOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::order_service::ViewOrderBookResponse>* PrepareAsyncViewOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::order_service::ViewOrderBookResponse>* StreamOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::order_service::ViewOrderBookResponse>* AsyncStreamOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::order_service::ViewOrderBookResponse>* PrepareAsyncStreamOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -103,6 +125,15 @@ class OrderService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::order_service::ViewOrderBookResponse>> PrepareAsyncViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::order_service::ViewOrderBookResponse>>(PrepareAsyncViewOrderBookRaw(context, request, cq));
     }
+    std::unique_ptr< ::grpc::ClientReader< ::order_service::ViewOrderBookResponse>> StreamOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::order_service::ViewOrderBookResponse>>(StreamOrderBookRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::order_service::ViewOrderBookResponse>> AsyncStreamOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::order_service::ViewOrderBookResponse>>(AsyncStreamOrderBookRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::order_service::ViewOrderBookResponse>> PrepareAsyncStreamOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::order_service::ViewOrderBookResponse>>(PrepareAsyncStreamOrderBookRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -112,6 +143,7 @@ class OrderService final {
       void CancelOrder(::grpc::ClientContext* context, const ::order_service::CancelRequest* request, ::order_service::CancelResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest* request, ::order_service::ViewOrderBookResponse* response, std::function<void(::grpc::Status)>) override;
       void ViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest* request, ::order_service::ViewOrderBookResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void StreamOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest* request, ::grpc::ClientReadReactor< ::order_service::ViewOrderBookResponse>* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -129,9 +161,13 @@ class OrderService final {
     ::grpc::ClientAsyncResponseReader< ::order_service::CancelResponse>* PrepareAsyncCancelOrderRaw(::grpc::ClientContext* context, const ::order_service::CancelRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::order_service::ViewOrderBookResponse>* AsyncViewOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::order_service::ViewOrderBookResponse>* PrepareAsyncViewOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::order_service::ViewOrderBookResponse>* StreamOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request) override;
+    ::grpc::ClientAsyncReader< ::order_service::ViewOrderBookResponse>* AsyncStreamOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::order_service::ViewOrderBookResponse>* PrepareAsyncStreamOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SubmitOrder_;
     const ::grpc::internal::RpcMethod rpcmethod_CancelOrder_;
     const ::grpc::internal::RpcMethod rpcmethod_ViewOrderBook_;
+    const ::grpc::internal::RpcMethod rpcmethod_StreamOrderBook_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -139,9 +175,14 @@ class OrderService final {
    public:
     Service();
     virtual ~Service();
+    // Submit a new order to the trading system
     virtual ::grpc::Status SubmitOrder(::grpc::ServerContext* context, const ::order_service::OrderRequest* request, ::order_service::OrderResponse* response);
+    // Cancel an existing order
     virtual ::grpc::Status CancelOrder(::grpc::ServerContext* context, const ::order_service::CancelRequest* request, ::order_service::CancelResponse* response);
+    // View the current order book
     virtual ::grpc::Status ViewOrderBook(::grpc::ServerContext* context, const ::order_service::ViewOrderBookRequest* request, ::order_service::ViewOrderBookResponse* response);
+    // Stream of order book updates (new feature)
+    virtual ::grpc::Status StreamOrderBook(::grpc::ServerContext* context, const ::order_service::ViewOrderBookRequest* request, ::grpc::ServerWriter< ::order_service::ViewOrderBookResponse>* writer);
   };
   template <class BaseClass>
   class WithAsyncMethod_SubmitOrder : public BaseClass {
@@ -203,7 +244,27 @@ class OrderService final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SubmitOrder<WithAsyncMethod_CancelOrder<WithAsyncMethod_ViewOrderBook<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_StreamOrderBook : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_StreamOrderBook() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_StreamOrderBook() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status StreamOrderBook(::grpc::ServerContext* /*context*/, const ::order_service::ViewOrderBookRequest* /*request*/, ::grpc::ServerWriter< ::order_service::ViewOrderBookResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestStreamOrderBook(::grpc::ServerContext* context, ::order_service::ViewOrderBookRequest* request, ::grpc::ServerAsyncWriter< ::order_service::ViewOrderBookResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(3, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_SubmitOrder<WithAsyncMethod_CancelOrder<WithAsyncMethod_ViewOrderBook<WithAsyncMethod_StreamOrderBook<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SubmitOrder : public BaseClass {
    private:
@@ -285,7 +346,29 @@ class OrderService final {
     virtual ::grpc::ServerUnaryReactor* ViewOrderBook(
       ::grpc::CallbackServerContext* /*context*/, const ::order_service::ViewOrderBookRequest* /*request*/, ::order_service::ViewOrderBookResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SubmitOrder<WithCallbackMethod_CancelOrder<WithCallbackMethod_ViewOrderBook<Service > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_StreamOrderBook : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_StreamOrderBook() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::order_service::ViewOrderBookRequest, ::order_service::ViewOrderBookResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::order_service::ViewOrderBookRequest* request) { return this->StreamOrderBook(context, request); }));
+    }
+    ~WithCallbackMethod_StreamOrderBook() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status StreamOrderBook(::grpc::ServerContext* /*context*/, const ::order_service::ViewOrderBookRequest* /*request*/, ::grpc::ServerWriter< ::order_service::ViewOrderBookResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerWriteReactor< ::order_service::ViewOrderBookResponse>* StreamOrderBook(
+      ::grpc::CallbackServerContext* /*context*/, const ::order_service::ViewOrderBookRequest* /*request*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_SubmitOrder<WithCallbackMethod_CancelOrder<WithCallbackMethod_ViewOrderBook<WithCallbackMethod_StreamOrderBook<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SubmitOrder : public BaseClass {
@@ -334,6 +417,23 @@ class OrderService final {
     }
     // disable synchronous version of this method
     ::grpc::Status ViewOrderBook(::grpc::ServerContext* /*context*/, const ::order_service::ViewOrderBookRequest* /*request*/, ::order_service::ViewOrderBookResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_StreamOrderBook : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_StreamOrderBook() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_StreamOrderBook() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status StreamOrderBook(::grpc::ServerContext* /*context*/, const ::order_service::ViewOrderBookRequest* /*request*/, ::grpc::ServerWriter< ::order_service::ViewOrderBookResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -396,6 +496,26 @@ class OrderService final {
     }
     void RequestViewOrderBook(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_StreamOrderBook : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_StreamOrderBook() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_StreamOrderBook() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status StreamOrderBook(::grpc::ServerContext* /*context*/, const ::order_service::ViewOrderBookRequest* /*request*/, ::grpc::ServerWriter< ::order_service::ViewOrderBookResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestStreamOrderBook(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(3, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -463,6 +583,28 @@ class OrderService final {
     }
     virtual ::grpc::ServerUnaryReactor* ViewOrderBook(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_StreamOrderBook : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_StreamOrderBook() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->StreamOrderBook(context, request); }));
+    }
+    ~WithRawCallbackMethod_StreamOrderBook() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status StreamOrderBook(::grpc::ServerContext* /*context*/, const ::order_service::ViewOrderBookRequest* /*request*/, ::grpc::ServerWriter< ::order_service::ViewOrderBookResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* StreamOrderBook(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_SubmitOrder : public BaseClass {
@@ -546,8 +688,35 @@ class OrderService final {
     virtual ::grpc::Status StreamedViewOrderBook(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::order_service::ViewOrderBookRequest,::order_service::ViewOrderBookResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_SubmitOrder<WithStreamedUnaryMethod_CancelOrder<WithStreamedUnaryMethod_ViewOrderBook<Service > > > StreamedUnaryService;
-  typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SubmitOrder<WithStreamedUnaryMethod_CancelOrder<WithStreamedUnaryMethod_ViewOrderBook<Service > > > StreamedService;
+  template <class BaseClass>
+  class WithSplitStreamingMethod_StreamOrderBook : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithSplitStreamingMethod_StreamOrderBook() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::SplitServerStreamingHandler<
+          ::order_service::ViewOrderBookRequest, ::order_service::ViewOrderBookResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
+                     ::order_service::ViewOrderBookRequest, ::order_service::ViewOrderBookResponse>* streamer) {
+                       return this->StreamedStreamOrderBook(context,
+                         streamer);
+                  }));
+    }
+    ~WithSplitStreamingMethod_StreamOrderBook() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status StreamOrderBook(::grpc::ServerContext* /*context*/, const ::order_service::ViewOrderBookRequest* /*request*/, ::grpc::ServerWriter< ::order_service::ViewOrderBookResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with split streamed
+    virtual ::grpc::Status StreamedStreamOrderBook(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::order_service::ViewOrderBookRequest,::order_service::ViewOrderBookResponse>* server_split_streamer) = 0;
+  };
+  typedef WithSplitStreamingMethod_StreamOrderBook<Service > SplitStreamedService;
+  typedef WithStreamedUnaryMethod_SubmitOrder<WithStreamedUnaryMethod_CancelOrder<WithStreamedUnaryMethod_ViewOrderBook<WithSplitStreamingMethod_StreamOrderBook<Service > > > > StreamedService;
 };
 
 }  // namespace order_service

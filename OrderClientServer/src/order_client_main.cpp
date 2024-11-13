@@ -46,12 +46,13 @@ public:
                     int quantity, 
                     bool is_buy) {
         OrderRequest request;
-        request.set_order_id(order_id);
-        request.set_trader_id(trader_id);
-        request.set_stock_symbol(stock_symbol);
-        request.set_price(price);
-        request.set_quantity(quantity);
-        request.set_is_buy_order(is_buy);
+        auto* details = request.mutable_details();
+        details->set_order_id(order_id);
+        details->set_trader_id(trader_id);
+        details->set_stock_symbol(stock_symbol);
+        details->set_price(price);
+        details->set_quantity(quantity);
+        details->set_is_buy_order(is_buy);
 
         OrderResponse response;
         ClientContext context;
@@ -63,9 +64,11 @@ public:
 
         if (status.ok()) {
             spdlog::info("Order submitted successfully:");
-            spdlog::info("Status: {}", response.status());
-            spdlog::info("Matched Price: {}", response.matched_price());
-            spdlog::info("Matched Quantity: {}", response.matched_quantity());
+            spdlog::info("Status: {}", OrderStatus_Name(response.status()));
+            if (response.status() == OrderStatus::FULLY_FILLED) {
+                spdlog::info("Matched Price: {}", response.matched_price());
+                spdlog::info("Matched Quantity: {}", response.matched_quantity());
+            }
             return true;
         }
         
@@ -77,6 +80,7 @@ public:
         CancelRequest request;
         request.set_order_id(order_id);
         request.set_is_buy_order(is_buy);
+        request.set_trader_id("system");  // You might want to make this configurable
 
         CancelResponse response;
         ClientContext context;
@@ -86,8 +90,8 @@ public:
         Status status = stub_->CancelOrder(&context, request, &response);
 
         if (status.ok()) {
-            spdlog::info("Cancel request result: {}", response.status());
-            return true;
+            spdlog::info("Cancel request result: {}", OrderStatus_Name(response.status()));
+            return response.status() == OrderStatus::CANCELLED;
         }
         
         spdlog::error("RPC failed: {}", status.error_message());
@@ -115,15 +119,18 @@ public:
                       << std::setw(10) << "Symbol"
                       << std::setw(12) << "Price"
                       << std::setw(12) << "Quantity"
+                      << std::setw(12) << "Remaining"
                       << "\n";
             std::cout << std::string(80, '-') << "\n";
             
-            for (const auto& order : response.buy_orders()) {
-                std::cout << std::setw(12) << order.order_id()
-                          << std::setw(12) << order.trader_id()
-                          << std::setw(10) << order.symbol()
-                          << std::setw(12) << std::fixed << std::setprecision(2) << order.price()
-                          << std::setw(12) << order.quantity()
+            for (const auto& entry : response.buy_orders()) {
+                const auto& details = entry.details();
+                std::cout << std::setw(12) << details.order_id()
+                          << std::setw(12) << details.trader_id()
+                          << std::setw(10) << details.stock_symbol()
+                          << std::setw(12) << std::fixed << std::setprecision(2) << details.price()
+                          << std::setw(12) << details.quantity()
+                          << std::setw(12) << entry.remaining_quantity()
                           << "\n";
             }
 
@@ -135,17 +142,24 @@ public:
                       << std::setw(10) << "Symbol"
                       << std::setw(12) << "Price"
                       << std::setw(12) << "Quantity"
+                      << std::setw(12) << "Remaining"
                       << "\n";
             std::cout << std::string(80, '-') << "\n";
             
-            for (const auto& order : response.sell_orders()) {
-                std::cout << std::setw(12) << order.order_id()
-                          << std::setw(12) << order.trader_id()
-                          << std::setw(10) << order.symbol()
-                          << std::setw(12) << std::fixed << std::setprecision(2) << order.price()
-                          << std::setw(12) << order.quantity()
+            for (const auto& entry : response.sell_orders()) {
+                const auto& details = entry.details();
+                std::cout << std::setw(12) << details.order_id()
+                          << std::setw(12) << details.trader_id()
+                          << std::setw(10) << details.stock_symbol()
+                          << std::setw(12) << std::fixed << std::setprecision(2) << details.price()
+                          << std::setw(12) << details.quantity()
+                          << std::setw(12) << entry.remaining_quantity()
                           << "\n";
             }
+
+            std::cout << "\nTotal Buy Orders: " << response.total_buy_orders()
+                      << "\nTotal Sell Orders: " << response.total_sell_orders()
+                      << "\nTimestamp: " << response.timestamp() << "\n";
 
             return true;
         }
@@ -282,4 +296,3 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 }
-

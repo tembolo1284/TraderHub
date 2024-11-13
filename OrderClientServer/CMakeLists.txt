@@ -7,16 +7,20 @@ find_package(Protobuf REQUIRED)
 find_package(gRPC REQUIRED)
 find_package(GTest REQUIRED)
 find_package(spdlog REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 # Include directories
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${CMAKE_SOURCE_DIR}/TradingEngine/include  # Changed from relative path to use CMAKE_SOURCE_DIR
+    ${NLOHMANN_JSON_INCLUDE_DIRS}
 )
 
 # Proto files configuration
 set(PROTO_FILES ${CMAKE_CURRENT_SOURCE_DIR}/protos/order_service.proto)
+set(GENERATED_PROTO_DIR ${CMAKE_CURRENT_BINARY_DIR}/generated)
+file(MAKE_DIRECTORY ${GENERATED_PROTO_DIR})
+
 set(GENERATED_PROTO_SRCS 
     "${CMAKE_CURRENT_BINARY_DIR}/order_service.pb.cc"
     "${CMAKE_CURRENT_BINARY_DIR}/order_service.grpc.pb.cc"
@@ -41,6 +45,9 @@ add_custom_command(
     DEPENDS ${PROTO_FILES}
 )
 
+# Add custom target for generated files
+add_custom_target(generate_protos DEPENDS ${GENERATED_PROTO_SRCS} ${GENERATED_PROTO_HDRS})
+
 # Core library for OrderClientServer
 add_library(OrderClientServerLib
     src/order_client_server.cpp
@@ -48,21 +55,22 @@ add_library(OrderClientServerLib
     ${GENERATED_PROTO_SRCS}
 )
 
+add_dependencies(OrderClientServerLib generate_protos)
+
 # Set include directories and link libraries for OrderClientServerLib
 target_include_directories(OrderClientServerLib 
     PUBLIC 
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_BINARY_DIR}
-    PRIVATE
-        ${CMAKE_SOURCE_DIR}/TradingEngine/include
+        ${NLOHMANN_JSON_INCLUDE_DIRS}
 )
 
 target_link_libraries(OrderClientServerLib
     PUBLIC
-        TradingEngineLib  # Link to TradingEngine library
         gRPC::grpc++
         protobuf::libprotobuf
         spdlog::spdlog
+        nlohmann_json::nlohmann_json
     PRIVATE
         gRPC::grpc
 )
@@ -74,12 +82,17 @@ target_link_libraries(OrderServer PRIVATE OrderClientServerLib)
 add_executable(OrderClient src/order_client_main.cpp ${GENERATED_PROTO_SRCS})
 target_link_libraries(OrderClient
     PRIVATE
+        OrderClientServerLib
         protobuf::libprotobuf
         gRPC::grpc++
         gRPC::grpc
         spdlog::spdlog
         nlohmann_json::nlohmann_json
 )
+
+# Enable testing and include GoogleTest module
+enable_testing()
+include(GoogleTest)
 
 # Test executable
 add_executable(OrderClientServerTests tests/order_client_server_tests.cpp)
@@ -90,9 +103,12 @@ target_link_libraries(OrderClientServerTests
         GTest::Main
 )
 
-# Enable testing
-enable_testing()
-add_test(NAME OrderClientServerTests COMMAND OrderClientServerTests)
+# Discover tests automatically
+gtest_discover_tests(OrderClientServerTests
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    PROPERTIES
+        ENVIRONMENT "PATH=${CMAKE_CURRENT_BINARY_DIR}:$ENV{PATH}"
+)
 
 # Installation rules
 install(TARGETS 
@@ -107,4 +123,10 @@ install(TARGETS
 install(DIRECTORY include/
     DESTINATION include
     FILES_MATCHING PATTERN "*.hpp"
+)
+
+# Install generated proto headers
+install(
+    FILES ${GENERATED_PROTO_HDRS}
+    DESTINATION include/generated
 )

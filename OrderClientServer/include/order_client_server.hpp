@@ -2,9 +2,7 @@
 #ifndef ORDER_CLIENT_SERVER_HPP
 #define ORDER_CLIENT_SERVER_HPP
 
-#include "order_book.hpp"
-#include "order_types.hpp"
-#include "trade.hpp"
+#include "order_service.grpc.pb.h"
 #include <memory>
 #include <string>
 #include <mutex>
@@ -18,23 +16,20 @@ public:
 
 class OrderClientServer {
 public:
-    explicit OrderClientServer(std::shared_ptr<OrderBook> orderBook);
+    OrderClientServer() = default;
     
-    MatchResult submitOrder(const std::string& order_id, 
-                           const std::string& trader_id,
-                           const std::string& stock_symbol, 
-                           double price,
-                           int quantity, 
-                           bool is_buy_order);
-                            
-    std::string cancelOrder(const std::string& order_id, bool is_buy_order);
-
-    // New method
-    std::pair<std::vector<Order>, std::vector<Order>> getOrderBook(const std::string& symbol = "") const;
+    order_service::OrderResponse submitOrder(const order_service::OrderRequest& request);
+    order_service::CancelResponse cancelOrder(const order_service::CancelRequest& request);
+    order_service::ViewOrderBookResponse getOrderBook(const order_service::ViewOrderBookRequest& request);
 
 private:
-    std::shared_ptr<OrderBook> orderBook_;
     mutable std::mutex order_mutex_;
+    std::vector<order_service::OrderBookEntry> buy_orders_;
+    std::vector<order_service::OrderBookEntry> sell_orders_;
+    
+    // Helper methods
+    int matchOrders(order_service::OrderBookEntry& new_order);
+    std::string getCurrentTimestamp() const;
 };
 
 #endif // ORDER_CLIENT_SERVER_HPP

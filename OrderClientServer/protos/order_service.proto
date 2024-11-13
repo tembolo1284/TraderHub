@@ -1,15 +1,35 @@
 // protos/order_service.proto
 syntax = "proto3";
-
 package order_service;
 
+// Main OrderService definition
 service OrderService {
+    // Submit a new order to the trading system
     rpc SubmitOrder(OrderRequest) returns (OrderResponse);
+    
+    // Cancel an existing order
     rpc CancelOrder(CancelRequest) returns (CancelResponse);
+    
+    // View the current order book
     rpc ViewOrderBook(ViewOrderBookRequest) returns (ViewOrderBookResponse);
+    
+    // Stream of order book updates (new feature)
+    rpc StreamOrderBook(ViewOrderBookRequest) returns (stream ViewOrderBookResponse);
 }
 
-message OrderRequest {
+// Shared status enum for use in responses
+enum OrderStatus {
+    UNKNOWN = 0;
+    SUCCESS = 1;
+    PARTIAL_FILL = 2;
+    FULLY_FILLED = 3;
+    CANCELLED = 4;
+    REJECTED = 5;
+    ERROR = 6;
+}
+
+// Common order fields that might be reused
+message OrderDetails {
     string order_id = 1;
     string trader_id = 2;
     string stock_symbol = 3;
@@ -18,36 +38,47 @@ message OrderRequest {
     bool is_buy_order = 6;
 }
 
+message OrderRequest {
+    OrderDetails details = 1;
+}
+
 message OrderResponse {
-    string status = 1;
-    double matched_price = 2;
-    int32 matched_quantity = 3;
+    OrderStatus status = 1;
+    string message = 2;
+    double matched_price = 3;
+    int32 matched_quantity = 4;
+    string transaction_id = 5;  // Unique ID for this transaction
+    string timestamp = 6;
 }
 
 message CancelRequest {
     string order_id = 1;
     bool is_buy_order = 2;
+    string trader_id = 3;  // Added for security validation
 }
 
 message CancelResponse {
-    string status = 1;
+    OrderStatus status = 1;
+    string message = 2;
+    string timestamp = 3;
 }
 
 message ViewOrderBookRequest {
-    string symbol = 1;  // Optional: can be empty to view all symbols
+    string symbol = 1;  // Optional: empty means all symbols
+    int32 depth = 2;    // Optional: limit the number of orders returned
 }
 
 message OrderBookEntry {
-    string order_id = 1;
-    string trader_id = 2;
-    string symbol = 3;
-    double price = 4;
-    int32 quantity = 5;
-    bool is_buy_order = 6;
-    string timestamp = 7;
+    OrderDetails details = 1;
+    int32 remaining_quantity = 2;
+    string timestamp = 3;
 }
 
 message ViewOrderBookResponse {
     repeated OrderBookEntry buy_orders = 1;
     repeated OrderBookEntry sell_orders = 2;
+    string timestamp = 3;
+    string symbol = 4;      // Symbol this response is for
+    int32 total_buy_orders = 5;   // Total number of buy orders
+    int32 total_sell_orders = 6;  // Total number of sell orders
 }

@@ -18,9 +18,6 @@ include_directories(
 
 # Proto files configuration
 set(PROTO_FILES ${CMAKE_CURRENT_SOURCE_DIR}/protos/order_service.proto)
-set(GENERATED_PROTO_DIR ${CMAKE_CURRENT_BINARY_DIR}/generated)
-file(MAKE_DIRECTORY ${GENERATED_PROTO_DIR})
-
 set(GENERATED_PROTO_SRCS 
     "${CMAKE_CURRENT_BINARY_DIR}/order_service.pb.cc"
     "${CMAKE_CURRENT_BINARY_DIR}/order_service.grpc.pb.cc"
@@ -45,17 +42,12 @@ add_custom_command(
     DEPENDS ${PROTO_FILES}
 )
 
-# Add custom target for generated files
-add_custom_target(generate_protos DEPENDS ${GENERATED_PROTO_SRCS} ${GENERATED_PROTO_HDRS})
-
 # Core library for OrderClientServer
 add_library(OrderClientServerLib
     src/order_client_server.cpp
     src/order_service.cpp
     ${GENERATED_PROTO_SRCS}
 )
-
-add_dependencies(OrderClientServerLib generate_protos)
 
 # Set include directories and link libraries for OrderClientServerLib
 target_include_directories(OrderClientServerLib 
@@ -90,24 +82,20 @@ target_link_libraries(OrderClient
         nlohmann_json::nlohmann_json
 )
 
-# Enable testing and include GoogleTest module
-enable_testing()
-include(GoogleTest)
-
 # Test executable
 add_executable(OrderClientServerTests tests/order_client_server_tests.cpp)
 target_link_libraries(OrderClientServerTests
     PRIVATE
         OrderClientServerLib
-        GTest::GTest 
-        GTest::Main
+        GTest::gtest
+        GTest::gtest_main
 )
 
-# Discover tests automatically
+# Enable testing with GTest
+enable_testing()
+include(GoogleTest)
 gtest_discover_tests(OrderClientServerTests
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    PROPERTIES
-        ENVIRONMENT "PATH=${CMAKE_CURRENT_BINARY_DIR}:$ENV{PATH}"
 )
 
 # Installation rules
@@ -123,10 +111,4 @@ install(TARGETS
 install(DIRECTORY include/
     DESTINATION include
     FILES_MATCHING PATTERN "*.hpp"
-)
-
-# Install generated proto headers
-install(
-    FILES ${GENERATED_PROTO_HDRS}
-    DESTINATION include/generated
 )

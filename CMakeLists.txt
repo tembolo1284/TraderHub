@@ -7,15 +7,21 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Find the nlohmann_json library
+# Common package dependencies
 find_package(nlohmann_json REQUIRED)
+find_package(Protobuf REQUIRED)
+find_package(gRPC REQUIRED)
+find_package(spdlog REQUIRED)
+find_package(GTest REQUIRED)
 
-# First build TradingEngine
+# Add common include directories
+include_directories(${NLOHMANN_JSON_INCLUDE_DIRS})
+
+# Build projects independently
 add_subdirectory(TradingEngine)
-
-# Then build OrderClientServer
-# The OrderClientServer depends on TradingEngine
 add_subdirectory(OrderClientServer)
 
-# Add the include directories for the nlohmann_json library
-include_directories(${NLOHMANN_JSON_INCLUDE_DIRS})
+# Optional: Add documentation target
+add_custom_target(docs
+    COMMENT "Generating documentation..."
+)

@@ -1,5 +1,0 @@
-if(EXISTS "/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/OrderClientServerTests[1]_tests.cmake")
-  include("/home/tembolo381/Desktop/cpp-workspace/TraderHub/OrderClientServer/build/OrderClientServerTests[1]_tests.cmake")
-else()
-  add_test(OrderClientServerTests_NOT_BUILT OrderClientServerTests_NOT_BUILT)
-endif()

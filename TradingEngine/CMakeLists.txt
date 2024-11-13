@@ -14,16 +14,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 include(CTest)
 enable_testing()
 
-# Include FetchContent for downloading dependencies
-include(FetchContent)
-
-# Fetch GoogleTest
-FetchContent_Declare(
-    googletest
-    GIT_REPOSITORY https://github.com/google/googletest.git
-    GIT_TAG v1.14.0
-)
-FetchContent_MakeAvailable(googletest)
+# Find GTest package instead of building it
+find_package(GTest REQUIRED)
 
 # Function to set compiler flags based on the compiler being used
 function(set_strict_compiler_flags target)
@@ -33,7 +25,6 @@ function(set_strict_compiler_flags target)
             /WX                     # Treat warnings as errors
             /permissive-           # Strict standards compliance
             /w14242                # Conversion possible loss of data
-            # ... (other MSVC compiler flags)
         )
     else()
         target_compile_options(${target} PRIVATE
@@ -41,7 +32,6 @@ function(set_strict_compiler_flags target)
             -Wextra                  # Enable extra warnings
             -Werror                  # Treat warnings as errors
             -pedantic               # Strict ISO C/C++
-            # ... (other GCC/Clang compiler flags)
         )
 
         if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -107,7 +97,6 @@ if(BUILD_TESTING)
         TradingEngineLib
         GTest::gtest
         GTest::gtest_main
-        GTest::gmock
     )
 
     target_link_libraries(integration_tests PRIVATE
@@ -155,11 +144,6 @@ if(BUILD_TESTING)
 
     # Create test results directory
     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test-results)
-
-    # Set test output format
-    set_tests_properties(${ALL_TESTS} PROPERTIES
-        ENVIRONMENT "GTEST_OUTPUT=xml:${CMAKE_BINARY_DIR}/test-results/"
-    )
 endif()
 
 # Install the library

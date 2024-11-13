@@ -91,14 +91,16 @@ int OrderClientServer::matchOrders(order_service::OrderBookEntry& new_order) {
     
     // Try to match orders
     auto it = opposite_orders.begin();
-    while (it != opposite_orders.end() && new_order.remaining_quantity() > 0) {
+    int remaining_to_match = new_order.remaining_quantity(); // Track remaining quantity
+
+    while (it != opposite_orders.end() && remaining_to_match > 0) {
         // Check if prices cross
         if ((new_order.details().is_buy_order() && 
              new_order.details().price() >= it->details().price()) ||
             (!new_order.details().is_buy_order() && 
              new_order.details().price() <= it->details().price())) {
             
-            int match_quantity = std::min(new_order.remaining_quantity(), 
+            int match_quantity = std::min(remaining_to_match, 
                                         it->remaining_quantity());
             
             spdlog::info("Match found: Order {} matches with {} for quantity {}", 
@@ -107,7 +109,8 @@ int OrderClientServer::matchOrders(order_service::OrderBookEntry& new_order) {
                         match_quantity);
             
             total_matched += match_quantity;
-            new_order.set_remaining_quantity(new_order.remaining_quantity() - match_quantity);
+            remaining_to_match -= match_quantity;
+            new_order.set_remaining_quantity(remaining_to_match); // Update remaining quantity
             it->set_remaining_quantity(it->remaining_quantity() - match_quantity);
             
             if (it->remaining_quantity() == 0) {

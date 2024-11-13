@@ -46,7 +46,7 @@ struct TableStruct_order_5fservice_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[7]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -60,18 +60,30 @@ extern CancelRequestDefaultTypeInternal _CancelRequest_default_instance_;
 class CancelResponse;
 struct CancelResponseDefaultTypeInternal;
 extern CancelResponseDefaultTypeInternal _CancelResponse_default_instance_;
+class OrderBookEntry;
+struct OrderBookEntryDefaultTypeInternal;
+extern OrderBookEntryDefaultTypeInternal _OrderBookEntry_default_instance_;
 class OrderRequest;
 struct OrderRequestDefaultTypeInternal;
 extern OrderRequestDefaultTypeInternal _OrderRequest_default_instance_;
 class OrderResponse;
 struct OrderResponseDefaultTypeInternal;
 extern OrderResponseDefaultTypeInternal _OrderResponse_default_instance_;
+class ViewOrderBookRequest;
+struct ViewOrderBookRequestDefaultTypeInternal;
+extern ViewOrderBookRequestDefaultTypeInternal _ViewOrderBookRequest_default_instance_;
+class ViewOrderBookResponse;
+struct ViewOrderBookResponseDefaultTypeInternal;
+extern ViewOrderBookResponseDefaultTypeInternal _ViewOrderBookResponse_default_instance_;
 }  // namespace order_service
 PROTOBUF_NAMESPACE_OPEN
 template<> ::order_service::CancelRequest* Arena::CreateMaybeMessage<::order_service::CancelRequest>(Arena*);
 template<> ::order_service::CancelResponse* Arena::CreateMaybeMessage<::order_service::CancelResponse>(Arena*);
+template<> ::order_service::OrderBookEntry* Arena::CreateMaybeMessage<::order_service::OrderBookEntry>(Arena*);
 template<> ::order_service::OrderRequest* Arena::CreateMaybeMessage<::order_service::OrderRequest>(Arena*);
 template<> ::order_service::OrderResponse* Arena::CreateMaybeMessage<::order_service::OrderResponse>(Arena*);
+template<> ::order_service::ViewOrderBookRequest* Arena::CreateMaybeMessage<::order_service::ViewOrderBookRequest>(Arena*);
+template<> ::order_service::ViewOrderBookResponse* Arena::CreateMaybeMessage<::order_service::ViewOrderBookResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace order_service {
 
@@ -765,6 +777,555 @@ class CancelResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_order_5fservice_2eproto;
 };
+// -------------------------------------------------------------------
+
+class ViewOrderBookRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:order_service.ViewOrderBookRequest) */ {
+ public:
+  inline ViewOrderBookRequest() : ViewOrderBookRequest(nullptr) {}
+  ~ViewOrderBookRequest() override;
+  explicit constexpr ViewOrderBookRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ViewOrderBookRequest(const ViewOrderBookRequest& from);
+  ViewOrderBookRequest(ViewOrderBookRequest&& from) noexcept
+    : ViewOrderBookRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ViewOrderBookRequest& operator=(const ViewOrderBookRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ViewOrderBookRequest& operator=(ViewOrderBookRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ViewOrderBookRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ViewOrderBookRequest* internal_default_instance() {
+    return reinterpret_cast<const ViewOrderBookRequest*>(
+               &_ViewOrderBookRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(ViewOrderBookRequest& a, ViewOrderBookRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ViewOrderBookRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ViewOrderBookRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ViewOrderBookRequest* New() const final {
+    return new ViewOrderBookRequest();
+  }
+
+  ViewOrderBookRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ViewOrderBookRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ViewOrderBookRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ViewOrderBookRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ViewOrderBookRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "order_service.ViewOrderBookRequest";
+  }
+  protected:
+  explicit ViewOrderBookRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSymbolFieldNumber = 1,
+  };
+  // string symbol = 1;
+  void clear_symbol();
+  const std::string& symbol() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_symbol(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_symbol();
+  PROTOBUF_MUST_USE_RESULT std::string* release_symbol();
+  void set_allocated_symbol(std::string* symbol);
+  private:
+  const std::string& _internal_symbol() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_symbol(const std::string& value);
+  std::string* _internal_mutable_symbol();
+  public:
+
+  // @@protoc_insertion_point(class_scope:order_service.ViewOrderBookRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr symbol_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_order_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class OrderBookEntry final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:order_service.OrderBookEntry) */ {
+ public:
+  inline OrderBookEntry() : OrderBookEntry(nullptr) {}
+  ~OrderBookEntry() override;
+  explicit constexpr OrderBookEntry(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  OrderBookEntry(const OrderBookEntry& from);
+  OrderBookEntry(OrderBookEntry&& from) noexcept
+    : OrderBookEntry() {
+    *this = ::std::move(from);
+  }
+
+  inline OrderBookEntry& operator=(const OrderBookEntry& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline OrderBookEntry& operator=(OrderBookEntry&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const OrderBookEntry& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const OrderBookEntry* internal_default_instance() {
+    return reinterpret_cast<const OrderBookEntry*>(
+               &_OrderBookEntry_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(OrderBookEntry& a, OrderBookEntry& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(OrderBookEntry* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(OrderBookEntry* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline OrderBookEntry* New() const final {
+    return new OrderBookEntry();
+  }
+
+  OrderBookEntry* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<OrderBookEntry>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const OrderBookEntry& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const OrderBookEntry& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(OrderBookEntry* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "order_service.OrderBookEntry";
+  }
+  protected:
+  explicit OrderBookEntry(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrderIdFieldNumber = 1,
+    kTraderIdFieldNumber = 2,
+    kSymbolFieldNumber = 3,
+    kTimestampFieldNumber = 7,
+    kPriceFieldNumber = 4,
+    kQuantityFieldNumber = 5,
+    kIsBuyOrderFieldNumber = 6,
+  };
+  // string order_id = 1;
+  void clear_order_id();
+  const std::string& order_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_order_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_order_id();
+  PROTOBUF_MUST_USE_RESULT std::string* release_order_id();
+  void set_allocated_order_id(std::string* order_id);
+  private:
+  const std::string& _internal_order_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_order_id(const std::string& value);
+  std::string* _internal_mutable_order_id();
+  public:
+
+  // string trader_id = 2;
+  void clear_trader_id();
+  const std::string& trader_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_trader_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_trader_id();
+  PROTOBUF_MUST_USE_RESULT std::string* release_trader_id();
+  void set_allocated_trader_id(std::string* trader_id);
+  private:
+  const std::string& _internal_trader_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_trader_id(const std::string& value);
+  std::string* _internal_mutable_trader_id();
+  public:
+
+  // string symbol = 3;
+  void clear_symbol();
+  const std::string& symbol() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_symbol(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_symbol();
+  PROTOBUF_MUST_USE_RESULT std::string* release_symbol();
+  void set_allocated_symbol(std::string* symbol);
+  private:
+  const std::string& _internal_symbol() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_symbol(const std::string& value);
+  std::string* _internal_mutable_symbol();
+  public:
+
+  // string timestamp = 7;
+  void clear_timestamp();
+  const std::string& timestamp() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_timestamp(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_timestamp();
+  PROTOBUF_MUST_USE_RESULT std::string* release_timestamp();
+  void set_allocated_timestamp(std::string* timestamp);
+  private:
+  const std::string& _internal_timestamp() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_timestamp(const std::string& value);
+  std::string* _internal_mutable_timestamp();
+  public:
+
+  // double price = 4;
+  void clear_price();
+  double price() const;
+  void set_price(double value);
+  private:
+  double _internal_price() const;
+  void _internal_set_price(double value);
+  public:
+
+  // int32 quantity = 5;
+  void clear_quantity();
+  ::PROTOBUF_NAMESPACE_ID::int32 quantity() const;
+  void set_quantity(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_quantity() const;
+  void _internal_set_quantity(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // bool is_buy_order = 6;
+  void clear_is_buy_order();
+  bool is_buy_order() const;
+  void set_is_buy_order(bool value);
+  private:
+  bool _internal_is_buy_order() const;
+  void _internal_set_is_buy_order(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:order_service.OrderBookEntry)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr order_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr trader_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr symbol_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr timestamp_;
+  double price_;
+  ::PROTOBUF_NAMESPACE_ID::int32 quantity_;
+  bool is_buy_order_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_order_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ViewOrderBookResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:order_service.ViewOrderBookResponse) */ {
+ public:
+  inline ViewOrderBookResponse() : ViewOrderBookResponse(nullptr) {}
+  ~ViewOrderBookResponse() override;
+  explicit constexpr ViewOrderBookResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ViewOrderBookResponse(const ViewOrderBookResponse& from);
+  ViewOrderBookResponse(ViewOrderBookResponse&& from) noexcept
+    : ViewOrderBookResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ViewOrderBookResponse& operator=(const ViewOrderBookResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ViewOrderBookResponse& operator=(ViewOrderBookResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ViewOrderBookResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ViewOrderBookResponse* internal_default_instance() {
+    return reinterpret_cast<const ViewOrderBookResponse*>(
+               &_ViewOrderBookResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(ViewOrderBookResponse& a, ViewOrderBookResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ViewOrderBookResponse* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ViewOrderBookResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ViewOrderBookResponse* New() const final {
+    return new ViewOrderBookResponse();
+  }
+
+  ViewOrderBookResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ViewOrderBookResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ViewOrderBookResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ViewOrderBookResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ViewOrderBookResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "order_service.ViewOrderBookResponse";
+  }
+  protected:
+  explicit ViewOrderBookResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBuyOrdersFieldNumber = 1,
+    kSellOrdersFieldNumber = 2,
+  };
+  // repeated .order_service.OrderBookEntry buy_orders = 1;
+  int buy_orders_size() const;
+  private:
+  int _internal_buy_orders_size() const;
+  public:
+  void clear_buy_orders();
+  ::order_service::OrderBookEntry* mutable_buy_orders(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::order_service::OrderBookEntry >*
+      mutable_buy_orders();
+  private:
+  const ::order_service::OrderBookEntry& _internal_buy_orders(int index) const;
+  ::order_service::OrderBookEntry* _internal_add_buy_orders();
+  public:
+  const ::order_service::OrderBookEntry& buy_orders(int index) const;
+  ::order_service::OrderBookEntry* add_buy_orders();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::order_service::OrderBookEntry >&
+      buy_orders() const;
+
+  // repeated .order_service.OrderBookEntry sell_orders = 2;
+  int sell_orders_size() const;
+  private:
+  int _internal_sell_orders_size() const;
+  public:
+  void clear_sell_orders();
+  ::order_service::OrderBookEntry* mutable_sell_orders(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::order_service::OrderBookEntry >*
+      mutable_sell_orders();
+  private:
+  const ::order_service::OrderBookEntry& _internal_sell_orders(int index) const;
+  ::order_service::OrderBookEntry* _internal_add_sell_orders();
+  public:
+  const ::order_service::OrderBookEntry& sell_orders(int index) const;
+  ::order_service::OrderBookEntry* add_sell_orders();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::order_service::OrderBookEntry >&
+      sell_orders() const;
+
+  // @@protoc_insertion_point(class_scope:order_service.ViewOrderBookResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::order_service::OrderBookEntry > buy_orders_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::order_service::OrderBookEntry > sell_orders_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_order_5fservice_2eproto;
+};
 // ===================================================================
 
 
@@ -1184,9 +1745,397 @@ inline void CancelResponse::set_allocated_status(std::string* status) {
   // @@protoc_insertion_point(field_set_allocated:order_service.CancelResponse.status)
 }
 
+// -------------------------------------------------------------------
+
+// ViewOrderBookRequest
+
+// string symbol = 1;
+inline void ViewOrderBookRequest::clear_symbol() {
+  symbol_.ClearToEmpty();
+}
+inline const std::string& ViewOrderBookRequest::symbol() const {
+  // @@protoc_insertion_point(field_get:order_service.ViewOrderBookRequest.symbol)
+  return _internal_symbol();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ViewOrderBookRequest::set_symbol(ArgT0&& arg0, ArgT... args) {
+ 
+ symbol_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:order_service.ViewOrderBookRequest.symbol)
+}
+inline std::string* ViewOrderBookRequest::mutable_symbol() {
+  std::string* _s = _internal_mutable_symbol();
+  // @@protoc_insertion_point(field_mutable:order_service.ViewOrderBookRequest.symbol)
+  return _s;
+}
+inline const std::string& ViewOrderBookRequest::_internal_symbol() const {
+  return symbol_.Get();
+}
+inline void ViewOrderBookRequest::_internal_set_symbol(const std::string& value) {
+  
+  symbol_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* ViewOrderBookRequest::_internal_mutable_symbol() {
+  
+  return symbol_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* ViewOrderBookRequest::release_symbol() {
+  // @@protoc_insertion_point(field_release:order_service.ViewOrderBookRequest.symbol)
+  return symbol_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void ViewOrderBookRequest::set_allocated_symbol(std::string* symbol) {
+  if (symbol != nullptr) {
+    
+  } else {
+    
+  }
+  symbol_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), symbol,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:order_service.ViewOrderBookRequest.symbol)
+}
+
+// -------------------------------------------------------------------
+
+// OrderBookEntry
+
+// string order_id = 1;
+inline void OrderBookEntry::clear_order_id() {
+  order_id_.ClearToEmpty();
+}
+inline const std::string& OrderBookEntry::order_id() const {
+  // @@protoc_insertion_point(field_get:order_service.OrderBookEntry.order_id)
+  return _internal_order_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void OrderBookEntry::set_order_id(ArgT0&& arg0, ArgT... args) {
+ 
+ order_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:order_service.OrderBookEntry.order_id)
+}
+inline std::string* OrderBookEntry::mutable_order_id() {
+  std::string* _s = _internal_mutable_order_id();
+  // @@protoc_insertion_point(field_mutable:order_service.OrderBookEntry.order_id)
+  return _s;
+}
+inline const std::string& OrderBookEntry::_internal_order_id() const {
+  return order_id_.Get();
+}
+inline void OrderBookEntry::_internal_set_order_id(const std::string& value) {
+  
+  order_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* OrderBookEntry::_internal_mutable_order_id() {
+  
+  return order_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* OrderBookEntry::release_order_id() {
+  // @@protoc_insertion_point(field_release:order_service.OrderBookEntry.order_id)
+  return order_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void OrderBookEntry::set_allocated_order_id(std::string* order_id) {
+  if (order_id != nullptr) {
+    
+  } else {
+    
+  }
+  order_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), order_id,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:order_service.OrderBookEntry.order_id)
+}
+
+// string trader_id = 2;
+inline void OrderBookEntry::clear_trader_id() {
+  trader_id_.ClearToEmpty();
+}
+inline const std::string& OrderBookEntry::trader_id() const {
+  // @@protoc_insertion_point(field_get:order_service.OrderBookEntry.trader_id)
+  return _internal_trader_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void OrderBookEntry::set_trader_id(ArgT0&& arg0, ArgT... args) {
+ 
+ trader_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:order_service.OrderBookEntry.trader_id)
+}
+inline std::string* OrderBookEntry::mutable_trader_id() {
+  std::string* _s = _internal_mutable_trader_id();
+  // @@protoc_insertion_point(field_mutable:order_service.OrderBookEntry.trader_id)
+  return _s;
+}
+inline const std::string& OrderBookEntry::_internal_trader_id() const {
+  return trader_id_.Get();
+}
+inline void OrderBookEntry::_internal_set_trader_id(const std::string& value) {
+  
+  trader_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* OrderBookEntry::_internal_mutable_trader_id() {
+  
+  return trader_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* OrderBookEntry::release_trader_id() {
+  // @@protoc_insertion_point(field_release:order_service.OrderBookEntry.trader_id)
+  return trader_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void OrderBookEntry::set_allocated_trader_id(std::string* trader_id) {
+  if (trader_id != nullptr) {
+    
+  } else {
+    
+  }
+  trader_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), trader_id,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:order_service.OrderBookEntry.trader_id)
+}
+
+// string symbol = 3;
+inline void OrderBookEntry::clear_symbol() {
+  symbol_.ClearToEmpty();
+}
+inline const std::string& OrderBookEntry::symbol() const {
+  // @@protoc_insertion_point(field_get:order_service.OrderBookEntry.symbol)
+  return _internal_symbol();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void OrderBookEntry::set_symbol(ArgT0&& arg0, ArgT... args) {
+ 
+ symbol_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:order_service.OrderBookEntry.symbol)
+}
+inline std::string* OrderBookEntry::mutable_symbol() {
+  std::string* _s = _internal_mutable_symbol();
+  // @@protoc_insertion_point(field_mutable:order_service.OrderBookEntry.symbol)
+  return _s;
+}
+inline const std::string& OrderBookEntry::_internal_symbol() const {
+  return symbol_.Get();
+}
+inline void OrderBookEntry::_internal_set_symbol(const std::string& value) {
+  
+  symbol_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* OrderBookEntry::_internal_mutable_symbol() {
+  
+  return symbol_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* OrderBookEntry::release_symbol() {
+  // @@protoc_insertion_point(field_release:order_service.OrderBookEntry.symbol)
+  return symbol_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void OrderBookEntry::set_allocated_symbol(std::string* symbol) {
+  if (symbol != nullptr) {
+    
+  } else {
+    
+  }
+  symbol_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), symbol,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:order_service.OrderBookEntry.symbol)
+}
+
+// double price = 4;
+inline void OrderBookEntry::clear_price() {
+  price_ = 0;
+}
+inline double OrderBookEntry::_internal_price() const {
+  return price_;
+}
+inline double OrderBookEntry::price() const {
+  // @@protoc_insertion_point(field_get:order_service.OrderBookEntry.price)
+  return _internal_price();
+}
+inline void OrderBookEntry::_internal_set_price(double value) {
+  
+  price_ = value;
+}
+inline void OrderBookEntry::set_price(double value) {
+  _internal_set_price(value);
+  // @@protoc_insertion_point(field_set:order_service.OrderBookEntry.price)
+}
+
+// int32 quantity = 5;
+inline void OrderBookEntry::clear_quantity() {
+  quantity_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 OrderBookEntry::_internal_quantity() const {
+  return quantity_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 OrderBookEntry::quantity() const {
+  // @@protoc_insertion_point(field_get:order_service.OrderBookEntry.quantity)
+  return _internal_quantity();
+}
+inline void OrderBookEntry::_internal_set_quantity(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  quantity_ = value;
+}
+inline void OrderBookEntry::set_quantity(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_quantity(value);
+  // @@protoc_insertion_point(field_set:order_service.OrderBookEntry.quantity)
+}
+
+// bool is_buy_order = 6;
+inline void OrderBookEntry::clear_is_buy_order() {
+  is_buy_order_ = false;
+}
+inline bool OrderBookEntry::_internal_is_buy_order() const {
+  return is_buy_order_;
+}
+inline bool OrderBookEntry::is_buy_order() const {
+  // @@protoc_insertion_point(field_get:order_service.OrderBookEntry.is_buy_order)
+  return _internal_is_buy_order();
+}
+inline void OrderBookEntry::_internal_set_is_buy_order(bool value) {
+  
+  is_buy_order_ = value;
+}
+inline void OrderBookEntry::set_is_buy_order(bool value) {
+  _internal_set_is_buy_order(value);
+  // @@protoc_insertion_point(field_set:order_service.OrderBookEntry.is_buy_order)
+}
+
+// string timestamp = 7;
+inline void OrderBookEntry::clear_timestamp() {
+  timestamp_.ClearToEmpty();
+}
+inline const std::string& OrderBookEntry::timestamp() const {
+  // @@protoc_insertion_point(field_get:order_service.OrderBookEntry.timestamp)
+  return _internal_timestamp();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void OrderBookEntry::set_timestamp(ArgT0&& arg0, ArgT... args) {
+ 
+ timestamp_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:order_service.OrderBookEntry.timestamp)
+}
+inline std::string* OrderBookEntry::mutable_timestamp() {
+  std::string* _s = _internal_mutable_timestamp();
+  // @@protoc_insertion_point(field_mutable:order_service.OrderBookEntry.timestamp)
+  return _s;
+}
+inline const std::string& OrderBookEntry::_internal_timestamp() const {
+  return timestamp_.Get();
+}
+inline void OrderBookEntry::_internal_set_timestamp(const std::string& value) {
+  
+  timestamp_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* OrderBookEntry::_internal_mutable_timestamp() {
+  
+  return timestamp_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* OrderBookEntry::release_timestamp() {
+  // @@protoc_insertion_point(field_release:order_service.OrderBookEntry.timestamp)
+  return timestamp_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void OrderBookEntry::set_allocated_timestamp(std::string* timestamp) {
+  if (timestamp != nullptr) {
+    
+  } else {
+    
+  }
+  timestamp_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), timestamp,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:order_service.OrderBookEntry.timestamp)
+}
+
+// -------------------------------------------------------------------
+
+// ViewOrderBookResponse
+
+// repeated .order_service.OrderBookEntry buy_orders = 1;
+inline int ViewOrderBookResponse::_internal_buy_orders_size() const {
+  return buy_orders_.size();
+}
+inline int ViewOrderBookResponse::buy_orders_size() const {
+  return _internal_buy_orders_size();
+}
+inline void ViewOrderBookResponse::clear_buy_orders() {
+  buy_orders_.Clear();
+}
+inline ::order_service::OrderBookEntry* ViewOrderBookResponse::mutable_buy_orders(int index) {
+  // @@protoc_insertion_point(field_mutable:order_service.ViewOrderBookResponse.buy_orders)
+  return buy_orders_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::order_service::OrderBookEntry >*
+ViewOrderBookResponse::mutable_buy_orders() {
+  // @@protoc_insertion_point(field_mutable_list:order_service.ViewOrderBookResponse.buy_orders)
+  return &buy_orders_;
+}
+inline const ::order_service::OrderBookEntry& ViewOrderBookResponse::_internal_buy_orders(int index) const {
+  return buy_orders_.Get(index);
+}
+inline const ::order_service::OrderBookEntry& ViewOrderBookResponse::buy_orders(int index) const {
+  // @@protoc_insertion_point(field_get:order_service.ViewOrderBookResponse.buy_orders)
+  return _internal_buy_orders(index);
+}
+inline ::order_service::OrderBookEntry* ViewOrderBookResponse::_internal_add_buy_orders() {
+  return buy_orders_.Add();
+}
+inline ::order_service::OrderBookEntry* ViewOrderBookResponse::add_buy_orders() {
+  ::order_service::OrderBookEntry* _add = _internal_add_buy_orders();
+  // @@protoc_insertion_point(field_add:order_service.ViewOrderBookResponse.buy_orders)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::order_service::OrderBookEntry >&
+ViewOrderBookResponse::buy_orders() const {
+  // @@protoc_insertion_point(field_list:order_service.ViewOrderBookResponse.buy_orders)
+  return buy_orders_;
+}
+
+// repeated .order_service.OrderBookEntry sell_orders = 2;
+inline int ViewOrderBookResponse::_internal_sell_orders_size() const {
+  return sell_orders_.size();
+}
+inline int ViewOrderBookResponse::sell_orders_size() const {
+  return _internal_sell_orders_size();
+}
+inline void ViewOrderBookResponse::clear_sell_orders() {
+  sell_orders_.Clear();
+}
+inline ::order_service::OrderBookEntry* ViewOrderBookResponse::mutable_sell_orders(int index) {
+  // @@protoc_insertion_point(field_mutable:order_service.ViewOrderBookResponse.sell_orders)
+  return sell_orders_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::order_service::OrderBookEntry >*
+ViewOrderBookResponse::mutable_sell_orders() {
+  // @@protoc_insertion_point(field_mutable_list:order_service.ViewOrderBookResponse.sell_orders)
+  return &sell_orders_;
+}
+inline const ::order_service::OrderBookEntry& ViewOrderBookResponse::_internal_sell_orders(int index) const {
+  return sell_orders_.Get(index);
+}
+inline const ::order_service::OrderBookEntry& ViewOrderBookResponse::sell_orders(int index) const {
+  // @@protoc_insertion_point(field_get:order_service.ViewOrderBookResponse.sell_orders)
+  return _internal_sell_orders(index);
+}
+inline ::order_service::OrderBookEntry* ViewOrderBookResponse::_internal_add_sell_orders() {
+  return sell_orders_.Add();
+}
+inline ::order_service::OrderBookEntry* ViewOrderBookResponse::add_sell_orders() {
+  ::order_service::OrderBookEntry* _add = _internal_add_sell_orders();
+  // @@protoc_insertion_point(field_add:order_service.ViewOrderBookResponse.sell_orders)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::order_service::OrderBookEntry >&
+ViewOrderBookResponse::sell_orders() const {
+  // @@protoc_insertion_point(field_list:order_service.ViewOrderBookResponse.sell_orders)
+  return sell_orders_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -1,4 +1,4 @@
-// order_book.cpp
+// src/order_book.cpp
 #include "order_book.hpp"
 #include <algorithm>
 #include <iostream>
@@ -47,7 +47,6 @@ void OrderBook::cancelOrder(const std::string& orderId, bool isBuyOrder) {
 }
 
 bool OrderBook::isMatchPossible(const Order& buyOrder, const Order& sellOrder) const {
-    // Add an explicit check for different order types
     if (buyOrder.isBuyOrder() == sellOrder.isBuyOrder()) {
         std::cout << "Attempted to match orders of the same type: "
                   << buyOrder.getOrderId() << " and " << sellOrder.getOrderId() << std::endl;
@@ -71,6 +70,15 @@ void OrderBook::reinsertOrder(Order& order, bool isBuyOrder) {
                 order.isBuyOrder());
 }
 
+bool OrderBook::isOrderCanceled(const std::string& orderId, bool isBuyOrder) const {
+    const auto& orders = isBuyOrder ? buyOrders : sellOrders;
+    if (auto orderOpt = orders->get(orderId)) {
+        const Order& order = orderOpt->get();
+        return order.isCanceled();
+    }
+    return true;  // Consider non-existent orders as effectively canceled
+}
+
 void OrderBook::processMatch(Order& buyOrder, Order& sellOrder) {
     if (!isMatchPossible(buyOrder, sellOrder)) {
         std::cout << "No match possible for " << buyOrder.getOrderId()
@@ -81,17 +89,16 @@ void OrderBook::processMatch(Order& buyOrder, Order& sellOrder) {
     int matchQuantity = std::min(buyOrder.getRemainingQuantity(), sellOrder.getRemainingQuantity());
     
     std::cout << "Matching " << matchQuantity << " units between "
-              << buyOrder.getOrderId() << " and " << sellOrder.getOrderId() << std::endl;
+              << buyOrder.getOrderId() << " and " << sellOrder.getOrderId() 
+              << " at price " << sellOrder.getPrice() << std::endl;
 
     buyOrder.reduceQuantity(matchQuantity);
     sellOrder.reduceQuantity(matchQuantity);
 
-    // Debug output after reduction
     std::cout << "After reduction: " << buyOrder.getOrderId() 
               << " remaining: " << buyOrder.getRemainingQuantity() << ", "
               << sellOrder.getOrderId() << " remaining: " << sellOrder.getRemainingQuantity() << std::endl;
 
-    // Reinsertion only if there is remaining quantity
     if (buyOrder.getRemainingQuantity() > 0) {
         std::cout << "Reinserting buy order with remaining quantity: " 
                   << buyOrder.getRemainingQuantity() << std::endl;
@@ -102,12 +109,6 @@ void OrderBook::processMatch(Order& buyOrder, Order& sellOrder) {
                   << sellOrder.getRemainingQuantity() << std::endl;
         reinsertOrder(sellOrder, false);
     }
-}
-
-bool OrderBook::isOrderCanceled(const std::string& orderId, bool isBuyOrder) const {
-    auto& orders = isBuyOrder ? buyOrders : sellOrders;
-    auto orderOpt = orders->get(orderId);
-    return !orderOpt || orderOpt->get().isCanceled();
 }
 
 void OrderBook::matchOrders() {
@@ -158,4 +159,3 @@ void OrderBook::matchOrders() {
 
     } while (madeMatch);
 }
-

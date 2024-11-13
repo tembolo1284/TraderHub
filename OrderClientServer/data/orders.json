@@ -1,0 +1,20 @@
+{
+  "orders": [
+    {
+      "order_id": "order1",
+      "trader_id": "trader1",
+      "symbol": "AAPL",
+      "price": 150.50,
+      "quantity": 100,
+      "is_buy": true
+    },
+    {
+      "order_id": "order2",
+      "trader_id": "trader2",
+      "symbol": "AAPL",
+      "price": 150.25,
+      "quantity": 100,
+      "is_buy": false
+    }
+  ]
+}

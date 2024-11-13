@@ -1,23 +1,18 @@
+# OrderClientServer/CMakeLists.txt
 cmake_minimum_required(VERSION 3.10)
 project(OrderClientServer)
 
-# Set C++ standard
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-# Find all required dependencies
+# Find dependencies
 find_package(Protobuf REQUIRED)
 find_package(gRPC REQUIRED)
 find_package(GTest REQUIRED)
-find_package(spdlog REQUIRED)  # Add spdlog dependency
+find_package(spdlog REQUIRED)
 
 # Include directories
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/../TradingEngine/include
-    ${spdlog_INCLUDE_DIRS}
+    ${CMAKE_SOURCE_DIR}/TradingEngine/include  # Changed from relative path to use CMAKE_SOURCE_DIR
 )
 
 # Proto files configuration
@@ -46,45 +41,25 @@ add_custom_command(
     DEPENDS ${PROTO_FILES}
 )
 
-# TradingEngine sources
-set(TRADING_ENGINE_SOURCES
-    ../TradingEngine/src/order.cpp
-    ../TradingEngine/src/order_book.cpp
-    ../TradingEngine/src/prioritizable_value_st.cpp
-    ../TradingEngine/src/trade.cpp
-    ../TradingEngine/src/trader.cpp
-)
-
-# OrderClientServer sources
-set(ORDER_CLIENT_SERVER_SOURCES
+# Core library for OrderClientServer
+add_library(OrderClientServerLib
     src/order_client_server.cpp
     src/order_service.cpp
     ${GENERATED_PROTO_SRCS}
 )
 
-# Create core library
-add_library(OrderClientServerLib
-    ${ORDER_CLIENT_SERVER_SOURCES}
-    ${TRADING_ENGINE_SOURCES}
-)
-
-# Set properties for the library
-set_target_properties(OrderClientServerLib PROPERTIES
-    CXX_STANDARD 20
-    CXX_STANDARD_REQUIRED ON
-)
-
-# Library include directories and dependencies
+# Set include directories and link libraries for OrderClientServerLib
 target_include_directories(OrderClientServerLib 
     PUBLIC 
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_BINARY_DIR}
     PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/../TradingEngine/include
+        ${CMAKE_SOURCE_DIR}/TradingEngine/include
 )
 
 target_link_libraries(OrderClientServerLib
     PUBLIC
+        TradingEngineLib  # Link to TradingEngine library
         gRPC::grpc++
         protobuf::libprotobuf
         spdlog::spdlog
@@ -92,26 +67,9 @@ target_link_libraries(OrderClientServerLib
         gRPC::grpc
 )
 
-# Server executable
+# Executables
 add_executable(OrderServer src/main.cpp)
-target_link_libraries(OrderServer 
-    PRIVATE 
-        OrderClientServerLib
-        spdlog::spdlog
-)
-
-# Tests configuration
-add_executable(OrderClientServerTests 
-    tests/order_client_server_tests.cpp
-)
-
-target_link_libraries(OrderClientServerTests
-    PRIVATE
-        OrderClientServerLib
-        GTest::GTest 
-        GTest::Main
-        spdlog::spdlog
-)
+target_link_libraries(OrderServer PRIVATE OrderClientServerLib)
 
 add_executable(OrderClient src/order_client_main.cpp ${GENERATED_PROTO_SRCS})
 target_link_libraries(OrderClient
@@ -119,29 +77,29 @@ target_link_libraries(OrderClient
         protobuf::libprotobuf
         gRPC::grpc++
         gRPC::grpc
+        spdlog::spdlog
+        nlohmann_json::nlohmann_json
+)
+
+# Test executable
+add_executable(OrderClientServerTests tests/order_client_server_tests.cpp)
+target_link_libraries(OrderClientServerTests
+    PRIVATE
+        OrderClientServerLib
+        GTest::GTest 
+        GTest::Main
 )
 
 # Enable testing
 enable_testing()
 add_test(NAME OrderClientServerTests COMMAND OrderClientServerTests)
 
-# Compiler warnings
-if(MSVC)
-    target_compile_options(OrderClientServerLib PRIVATE /W4)
-    target_compile_options(OrderServer PRIVATE /W4)
-    target_compile_options(OrderClientServerTests PRIVATE /W4)
-else()
-    target_compile_options(OrderClientServerLib PRIVATE -Wall -Wextra -Wpedantic)
-    target_compile_options(OrderServer PRIVATE -Wall -Wextra -Wpedantic)
-    target_compile_options(OrderClientServerTests PRIVATE -Wall -Wextra -Wpedantic)
-endif()
-
 # Installation rules
-install(TARGETS OrderServer
+install(TARGETS 
+    OrderServer
+    OrderClient
+    OrderClientServerLib
     RUNTIME DESTINATION bin
-)
-
-install(TARGETS OrderClientServerLib
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
 )

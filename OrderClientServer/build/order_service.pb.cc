@@ -73,8 +73,51 @@ struct CancelResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT CancelResponseDefaultTypeInternal _CancelResponse_default_instance_;
+constexpr ViewOrderBookRequest::ViewOrderBookRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : symbol_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct ViewOrderBookRequestDefaultTypeInternal {
+  constexpr ViewOrderBookRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ViewOrderBookRequestDefaultTypeInternal() {}
+  union {
+    ViewOrderBookRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ViewOrderBookRequestDefaultTypeInternal _ViewOrderBookRequest_default_instance_;
+constexpr OrderBookEntry::OrderBookEntry(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : order_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , trader_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , symbol_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , timestamp_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , price_(0)
+  , quantity_(0)
+  , is_buy_order_(false){}
+struct OrderBookEntryDefaultTypeInternal {
+  constexpr OrderBookEntryDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~OrderBookEntryDefaultTypeInternal() {}
+  union {
+    OrderBookEntry _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT OrderBookEntryDefaultTypeInternal _OrderBookEntry_default_instance_;
+constexpr ViewOrderBookResponse::ViewOrderBookResponse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : buy_orders_()
+  , sell_orders_(){}
+struct ViewOrderBookResponseDefaultTypeInternal {
+  constexpr ViewOrderBookResponseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ViewOrderBookResponseDefaultTypeInternal() {}
+  union {
+    ViewOrderBookResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ViewOrderBookResponseDefaultTypeInternal _ViewOrderBookResponse_default_instance_;
 }  // namespace order_service
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_order_5fservice_2eproto[4];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_order_5fservice_2eproto[7];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_order_5fservice_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_order_5fservice_2eproto = nullptr;
 
@@ -115,12 +158,43 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_order_5fservice_2eproto::offse
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::order_service::CancelResponse, status_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::order_service::ViewOrderBookRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::order_service::ViewOrderBookRequest, symbol_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::order_service::OrderBookEntry, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::order_service::OrderBookEntry, order_id_),
+  PROTOBUF_FIELD_OFFSET(::order_service::OrderBookEntry, trader_id_),
+  PROTOBUF_FIELD_OFFSET(::order_service::OrderBookEntry, symbol_),
+  PROTOBUF_FIELD_OFFSET(::order_service::OrderBookEntry, price_),
+  PROTOBUF_FIELD_OFFSET(::order_service::OrderBookEntry, quantity_),
+  PROTOBUF_FIELD_OFFSET(::order_service::OrderBookEntry, is_buy_order_),
+  PROTOBUF_FIELD_OFFSET(::order_service::OrderBookEntry, timestamp_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::order_service::ViewOrderBookResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::order_service::ViewOrderBookResponse, buy_orders_),
+  PROTOBUF_FIELD_OFFSET(::order_service::ViewOrderBookResponse, sell_orders_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::order_service::OrderRequest)},
   { 12, -1, -1, sizeof(::order_service::OrderResponse)},
   { 21, -1, -1, sizeof(::order_service::CancelRequest)},
   { 29, -1, -1, sizeof(::order_service::CancelResponse)},
+  { 36, -1, -1, sizeof(::order_service::ViewOrderBookRequest)},
+  { 43, -1, -1, sizeof(::order_service::OrderBookEntry)},
+  { 56, -1, -1, sizeof(::order_service::ViewOrderBookResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -128,6 +202,9 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::order_service::_OrderResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::order_service::_CancelRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::order_service::_CancelResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::order_service::_ViewOrderBookRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::order_service::_OrderBookEntry_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::order_service::_ViewOrderBookResponse_default_instance_),
 };
 
 const char descriptor_table_protodef_order_5fservice_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -139,16 +216,27 @@ const char descriptor_table_protodef_order_5fservice_2eproto[] PROTOBUF_SECTION_
   "\022\025\n\rmatched_price\030\002 \001(\001\022\030\n\020matched_quant"
   "ity\030\003 \001(\005\"7\n\rCancelRequest\022\020\n\010order_id\030\001"
   " \001(\t\022\024\n\014is_buy_order\030\002 \001(\010\" \n\016CancelResp"
-  "onse\022\016\n\006status\030\001 \001(\t2\244\001\n\014OrderService\022H\n"
-  "\013SubmitOrder\022\033.order_service.OrderReques"
-  "t\032\034.order_service.OrderResponse\022J\n\013Cance"
-  "lOrder\022\034.order_service.CancelRequest\032\035.o"
-  "rder_service.CancelResponseb\006proto3"
+  "onse\022\016\n\006status\030\001 \001(\t\"&\n\024ViewOrderBookReq"
+  "uest\022\016\n\006symbol\030\001 \001(\t\"\217\001\n\016OrderBookEntry\022"
+  "\020\n\010order_id\030\001 \001(\t\022\021\n\ttrader_id\030\002 \001(\t\022\016\n\006"
+  "symbol\030\003 \001(\t\022\r\n\005price\030\004 \001(\001\022\020\n\010quantity\030"
+  "\005 \001(\005\022\024\n\014is_buy_order\030\006 \001(\010\022\021\n\ttimestamp"
+  "\030\007 \001(\t\"~\n\025ViewOrderBookResponse\0221\n\nbuy_o"
+  "rders\030\001 \003(\0132\035.order_service.OrderBookEnt"
+  "ry\0222\n\013sell_orders\030\002 \003(\0132\035.order_service."
+  "OrderBookEntry2\200\002\n\014OrderService\022H\n\013Submi"
+  "tOrder\022\033.order_service.OrderRequest\032\034.or"
+  "der_service.OrderResponse\022J\n\013CancelOrder"
+  "\022\034.order_service.CancelRequest\032\035.order_s"
+  "ervice.CancelResponse\022Z\n\rViewOrderBook\022#"
+  ".order_service.ViewOrderBookRequest\032$.or"
+  "der_service.ViewOrderBookResponseb\006proto"
+  "3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_order_5fservice_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_order_5fservice_2eproto = {
-  false, false, 515, descriptor_table_protodef_order_5fservice_2eproto, "order_service.proto", 
-  &descriptor_table_order_5fservice_2eproto_once, nullptr, 0, 4,
+  false, false, 921, descriptor_table_protodef_order_5fservice_2eproto, "order_service.proto", 
+  &descriptor_table_order_5fservice_2eproto_once, nullptr, 0, 7,
   schemas, file_default_instances, TableStruct_order_5fservice_2eproto::offsets,
   file_level_metadata_order_5fservice_2eproto, file_level_enum_descriptors_order_5fservice_2eproto, file_level_service_descriptors_order_5fservice_2eproto,
 };
@@ -1202,6 +1290,829 @@ void CancelResponse::InternalSwap(CancelResponse* other) {
       file_level_metadata_order_5fservice_2eproto[3]);
 }
 
+// ===================================================================
+
+class ViewOrderBookRequest::_Internal {
+ public:
+};
+
+ViewOrderBookRequest::ViewOrderBookRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:order_service.ViewOrderBookRequest)
+}
+ViewOrderBookRequest::ViewOrderBookRequest(const ViewOrderBookRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  symbol_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_symbol().empty()) {
+    symbol_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_symbol(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:order_service.ViewOrderBookRequest)
+}
+
+void ViewOrderBookRequest::SharedCtor() {
+symbol_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+ViewOrderBookRequest::~ViewOrderBookRequest() {
+  // @@protoc_insertion_point(destructor:order_service.ViewOrderBookRequest)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void ViewOrderBookRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  symbol_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void ViewOrderBookRequest::ArenaDtor(void* object) {
+  ViewOrderBookRequest* _this = reinterpret_cast< ViewOrderBookRequest* >(object);
+  (void)_this;
+}
+void ViewOrderBookRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ViewOrderBookRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ViewOrderBookRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:order_service.ViewOrderBookRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  symbol_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ViewOrderBookRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string symbol = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_symbol();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "order_service.ViewOrderBookRequest.symbol"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ViewOrderBookRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:order_service.ViewOrderBookRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string symbol = 1;
+  if (!this->_internal_symbol().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_symbol().data(), static_cast<int>(this->_internal_symbol().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "order_service.ViewOrderBookRequest.symbol");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_symbol(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:order_service.ViewOrderBookRequest)
+  return target;
+}
+
+size_t ViewOrderBookRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:order_service.ViewOrderBookRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string symbol = 1;
+  if (!this->_internal_symbol().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_symbol());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ViewOrderBookRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ViewOrderBookRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ViewOrderBookRequest::GetClassData() const { return &_class_data_; }
+
+void ViewOrderBookRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ViewOrderBookRequest *>(to)->MergeFrom(
+      static_cast<const ViewOrderBookRequest &>(from));
+}
+
+
+void ViewOrderBookRequest::MergeFrom(const ViewOrderBookRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:order_service.ViewOrderBookRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_symbol().empty()) {
+    _internal_set_symbol(from._internal_symbol());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ViewOrderBookRequest::CopyFrom(const ViewOrderBookRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:order_service.ViewOrderBookRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ViewOrderBookRequest::IsInitialized() const {
+  return true;
+}
+
+void ViewOrderBookRequest::InternalSwap(ViewOrderBookRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &symbol_, lhs_arena,
+      &other->symbol_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ViewOrderBookRequest::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_order_5fservice_2eproto_getter, &descriptor_table_order_5fservice_2eproto_once,
+      file_level_metadata_order_5fservice_2eproto[4]);
+}
+
+// ===================================================================
+
+class OrderBookEntry::_Internal {
+ public:
+};
+
+OrderBookEntry::OrderBookEntry(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:order_service.OrderBookEntry)
+}
+OrderBookEntry::OrderBookEntry(const OrderBookEntry& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  order_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_order_id().empty()) {
+    order_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_order_id(), 
+      GetArenaForAllocation());
+  }
+  trader_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_trader_id().empty()) {
+    trader_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_trader_id(), 
+      GetArenaForAllocation());
+  }
+  symbol_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_symbol().empty()) {
+    symbol_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_symbol(), 
+      GetArenaForAllocation());
+  }
+  timestamp_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_timestamp().empty()) {
+    timestamp_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_timestamp(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&price_, &from.price_,
+    static_cast<size_t>(reinterpret_cast<char*>(&is_buy_order_) -
+    reinterpret_cast<char*>(&price_)) + sizeof(is_buy_order_));
+  // @@protoc_insertion_point(copy_constructor:order_service.OrderBookEntry)
+}
+
+void OrderBookEntry::SharedCtor() {
+order_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+trader_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+symbol_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+timestamp_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&price_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&is_buy_order_) -
+    reinterpret_cast<char*>(&price_)) + sizeof(is_buy_order_));
+}
+
+OrderBookEntry::~OrderBookEntry() {
+  // @@protoc_insertion_point(destructor:order_service.OrderBookEntry)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void OrderBookEntry::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  order_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  trader_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  symbol_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  timestamp_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void OrderBookEntry::ArenaDtor(void* object) {
+  OrderBookEntry* _this = reinterpret_cast< OrderBookEntry* >(object);
+  (void)_this;
+}
+void OrderBookEntry::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void OrderBookEntry::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void OrderBookEntry::Clear() {
+// @@protoc_insertion_point(message_clear_start:order_service.OrderBookEntry)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  order_id_.ClearToEmpty();
+  trader_id_.ClearToEmpty();
+  symbol_.ClearToEmpty();
+  timestamp_.ClearToEmpty();
+  ::memset(&price_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&is_buy_order_) -
+      reinterpret_cast<char*>(&price_)) + sizeof(is_buy_order_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* OrderBookEntry::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string order_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_order_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "order_service.OrderBookEntry.order_id"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string trader_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_trader_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "order_service.OrderBookEntry.trader_id"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string symbol = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_symbol();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "order_service.OrderBookEntry.symbol"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // double price = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 33)) {
+          price_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 quantity = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          quantity_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool is_buy_order = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          is_buy_order_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string timestamp = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          auto str = _internal_mutable_timestamp();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "order_service.OrderBookEntry.timestamp"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* OrderBookEntry::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:order_service.OrderBookEntry)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string order_id = 1;
+  if (!this->_internal_order_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_order_id().data(), static_cast<int>(this->_internal_order_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "order_service.OrderBookEntry.order_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_order_id(), target);
+  }
+
+  // string trader_id = 2;
+  if (!this->_internal_trader_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_trader_id().data(), static_cast<int>(this->_internal_trader_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "order_service.OrderBookEntry.trader_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_trader_id(), target);
+  }
+
+  // string symbol = 3;
+  if (!this->_internal_symbol().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_symbol().data(), static_cast<int>(this->_internal_symbol().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "order_service.OrderBookEntry.symbol");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_symbol(), target);
+  }
+
+  // double price = 4;
+  if (!(this->_internal_price() <= 0 && this->_internal_price() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(4, this->_internal_price(), target);
+  }
+
+  // int32 quantity = 5;
+  if (this->_internal_quantity() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(5, this->_internal_quantity(), target);
+  }
+
+  // bool is_buy_order = 6;
+  if (this->_internal_is_buy_order() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(6, this->_internal_is_buy_order(), target);
+  }
+
+  // string timestamp = 7;
+  if (!this->_internal_timestamp().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_timestamp().data(), static_cast<int>(this->_internal_timestamp().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "order_service.OrderBookEntry.timestamp");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_timestamp(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:order_service.OrderBookEntry)
+  return target;
+}
+
+size_t OrderBookEntry::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:order_service.OrderBookEntry)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string order_id = 1;
+  if (!this->_internal_order_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_order_id());
+  }
+
+  // string trader_id = 2;
+  if (!this->_internal_trader_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_trader_id());
+  }
+
+  // string symbol = 3;
+  if (!this->_internal_symbol().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_symbol());
+  }
+
+  // string timestamp = 7;
+  if (!this->_internal_timestamp().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_timestamp());
+  }
+
+  // double price = 4;
+  if (!(this->_internal_price() <= 0 && this->_internal_price() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // int32 quantity = 5;
+  if (this->_internal_quantity() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_quantity());
+  }
+
+  // bool is_buy_order = 6;
+  if (this->_internal_is_buy_order() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData OrderBookEntry::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    OrderBookEntry::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*OrderBookEntry::GetClassData() const { return &_class_data_; }
+
+void OrderBookEntry::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<OrderBookEntry *>(to)->MergeFrom(
+      static_cast<const OrderBookEntry &>(from));
+}
+
+
+void OrderBookEntry::MergeFrom(const OrderBookEntry& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:order_service.OrderBookEntry)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_order_id().empty()) {
+    _internal_set_order_id(from._internal_order_id());
+  }
+  if (!from._internal_trader_id().empty()) {
+    _internal_set_trader_id(from._internal_trader_id());
+  }
+  if (!from._internal_symbol().empty()) {
+    _internal_set_symbol(from._internal_symbol());
+  }
+  if (!from._internal_timestamp().empty()) {
+    _internal_set_timestamp(from._internal_timestamp());
+  }
+  if (!(from._internal_price() <= 0 && from._internal_price() >= 0)) {
+    _internal_set_price(from._internal_price());
+  }
+  if (from._internal_quantity() != 0) {
+    _internal_set_quantity(from._internal_quantity());
+  }
+  if (from._internal_is_buy_order() != 0) {
+    _internal_set_is_buy_order(from._internal_is_buy_order());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void OrderBookEntry::CopyFrom(const OrderBookEntry& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:order_service.OrderBookEntry)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool OrderBookEntry::IsInitialized() const {
+  return true;
+}
+
+void OrderBookEntry::InternalSwap(OrderBookEntry* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &order_id_, lhs_arena,
+      &other->order_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &trader_id_, lhs_arena,
+      &other->trader_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &symbol_, lhs_arena,
+      &other->symbol_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &timestamp_, lhs_arena,
+      &other->timestamp_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(OrderBookEntry, is_buy_order_)
+      + sizeof(OrderBookEntry::is_buy_order_)
+      - PROTOBUF_FIELD_OFFSET(OrderBookEntry, price_)>(
+          reinterpret_cast<char*>(&price_),
+          reinterpret_cast<char*>(&other->price_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata OrderBookEntry::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_order_5fservice_2eproto_getter, &descriptor_table_order_5fservice_2eproto_once,
+      file_level_metadata_order_5fservice_2eproto[5]);
+}
+
+// ===================================================================
+
+class ViewOrderBookResponse::_Internal {
+ public:
+};
+
+ViewOrderBookResponse::ViewOrderBookResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  buy_orders_(arena),
+  sell_orders_(arena) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:order_service.ViewOrderBookResponse)
+}
+ViewOrderBookResponse::ViewOrderBookResponse(const ViewOrderBookResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      buy_orders_(from.buy_orders_),
+      sell_orders_(from.sell_orders_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:order_service.ViewOrderBookResponse)
+}
+
+void ViewOrderBookResponse::SharedCtor() {
+}
+
+ViewOrderBookResponse::~ViewOrderBookResponse() {
+  // @@protoc_insertion_point(destructor:order_service.ViewOrderBookResponse)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void ViewOrderBookResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void ViewOrderBookResponse::ArenaDtor(void* object) {
+  ViewOrderBookResponse* _this = reinterpret_cast< ViewOrderBookResponse* >(object);
+  (void)_this;
+}
+void ViewOrderBookResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ViewOrderBookResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ViewOrderBookResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:order_service.ViewOrderBookResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  buy_orders_.Clear();
+  sell_orders_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ViewOrderBookResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .order_service.OrderBookEntry buy_orders = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_buy_orders(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .order_service.OrderBookEntry sell_orders = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_sell_orders(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ViewOrderBookResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:order_service.ViewOrderBookResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .order_service.OrderBookEntry buy_orders = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_buy_orders_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, this->_internal_buy_orders(i), target, stream);
+  }
+
+  // repeated .order_service.OrderBookEntry sell_orders = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_sell_orders_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, this->_internal_sell_orders(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:order_service.ViewOrderBookResponse)
+  return target;
+}
+
+size_t ViewOrderBookResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:order_service.ViewOrderBookResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .order_service.OrderBookEntry buy_orders = 1;
+  total_size += 1UL * this->_internal_buy_orders_size();
+  for (const auto& msg : this->buy_orders_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .order_service.OrderBookEntry sell_orders = 2;
+  total_size += 1UL * this->_internal_sell_orders_size();
+  for (const auto& msg : this->sell_orders_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ViewOrderBookResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ViewOrderBookResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ViewOrderBookResponse::GetClassData() const { return &_class_data_; }
+
+void ViewOrderBookResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ViewOrderBookResponse *>(to)->MergeFrom(
+      static_cast<const ViewOrderBookResponse &>(from));
+}
+
+
+void ViewOrderBookResponse::MergeFrom(const ViewOrderBookResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:order_service.ViewOrderBookResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  buy_orders_.MergeFrom(from.buy_orders_);
+  sell_orders_.MergeFrom(from.sell_orders_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ViewOrderBookResponse::CopyFrom(const ViewOrderBookResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:order_service.ViewOrderBookResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ViewOrderBookResponse::IsInitialized() const {
+  return true;
+}
+
+void ViewOrderBookResponse::InternalSwap(ViewOrderBookResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  buy_orders_.InternalSwap(&other->buy_orders_);
+  sell_orders_.InternalSwap(&other->sell_orders_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ViewOrderBookResponse::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_order_5fservice_2eproto_getter, &descriptor_table_order_5fservice_2eproto_once,
+      file_level_metadata_order_5fservice_2eproto[6]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace order_service
 PROTOBUF_NAMESPACE_OPEN
@@ -1216,6 +2127,15 @@ template<> PROTOBUF_NOINLINE ::order_service::CancelRequest* Arena::CreateMaybeM
 }
 template<> PROTOBUF_NOINLINE ::order_service::CancelResponse* Arena::CreateMaybeMessage< ::order_service::CancelResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::order_service::CancelResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::order_service::ViewOrderBookRequest* Arena::CreateMaybeMessage< ::order_service::ViewOrderBookRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::order_service::ViewOrderBookRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::order_service::OrderBookEntry* Arena::CreateMaybeMessage< ::order_service::OrderBookEntry >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::order_service::OrderBookEntry >(arena);
+}
+template<> PROTOBUF_NOINLINE ::order_service::ViewOrderBookResponse* Arena::CreateMaybeMessage< ::order_service::ViewOrderBookResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::order_service::ViewOrderBookResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

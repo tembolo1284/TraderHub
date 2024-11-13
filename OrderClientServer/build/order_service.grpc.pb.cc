@@ -24,6 +24,7 @@ namespace order_service {
 static const char* OrderService_method_names[] = {
   "/order_service.OrderService/SubmitOrder",
   "/order_service.OrderService/CancelOrder",
+  "/order_service.OrderService/ViewOrderBook",
 };
 
 std::unique_ptr< OrderService::Stub> OrderService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -35,6 +36,7 @@ std::unique_ptr< OrderService::Stub> OrderService::NewStub(const std::shared_ptr
 OrderService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_SubmitOrder_(OrderService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_CancelOrder_(OrderService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ViewOrderBook_(OrderService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status OrderService::Stub::SubmitOrder(::grpc::ClientContext* context, const ::order_service::OrderRequest& request, ::order_service::OrderResponse* response) {
@@ -83,6 +85,29 @@ void OrderService::Stub::async::CancelOrder(::grpc::ClientContext* context, cons
   return result;
 }
 
+::grpc::Status OrderService::Stub::ViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::order_service::ViewOrderBookResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::order_service::ViewOrderBookRequest, ::order_service::ViewOrderBookResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ViewOrderBook_, context, request, response);
+}
+
+void OrderService::Stub::async::ViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest* request, ::order_service::ViewOrderBookResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::order_service::ViewOrderBookRequest, ::order_service::ViewOrderBookResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ViewOrderBook_, context, request, response, std::move(f));
+}
+
+void OrderService::Stub::async::ViewOrderBook(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest* request, ::order_service::ViewOrderBookResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ViewOrderBook_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::order_service::ViewOrderBookResponse>* OrderService::Stub::PrepareAsyncViewOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::order_service::ViewOrderBookResponse, ::order_service::ViewOrderBookRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ViewOrderBook_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::order_service::ViewOrderBookResponse>* OrderService::Stub::AsyncViewOrderBookRaw(::grpc::ClientContext* context, const ::order_service::ViewOrderBookRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncViewOrderBookRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 OrderService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       OrderService_method_names[0],
@@ -104,6 +129,16 @@ OrderService::Service::Service() {
              ::order_service::CancelResponse* resp) {
                return service->CancelOrder(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      OrderService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< OrderService::Service, ::order_service::ViewOrderBookRequest, ::order_service::ViewOrderBookResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](OrderService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::order_service::ViewOrderBookRequest* req,
+             ::order_service::ViewOrderBookResponse* resp) {
+               return service->ViewOrderBook(ctx, req, resp);
+             }, this)));
 }
 
 OrderService::Service::~Service() {
@@ -117,6 +152,13 @@ OrderService::Service::~Service() {
 }
 
 ::grpc::Status OrderService::Service::CancelOrder(::grpc::ServerContext* context, const ::order_service::CancelRequest* request, ::order_service::CancelResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status OrderService::Service::ViewOrderBook(::grpc::ServerContext* context, const ::order_service::ViewOrderBookRequest* request, ::order_service::ViewOrderBookResponse* response) {
   (void) context;
   (void) request;
   (void) response;

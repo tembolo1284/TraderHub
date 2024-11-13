@@ -1,9 +1,12 @@
+// protos/order_service.proto
 syntax = "proto3";
+
 package order_service;
 
 service OrderService {
     rpc SubmitOrder(OrderRequest) returns (OrderResponse);
     rpc CancelOrder(CancelRequest) returns (CancelResponse);
+    rpc ViewOrderBook(ViewOrderBookRequest) returns (ViewOrderBookResponse);
 }
 
 message OrderRequest {
@@ -30,3 +33,21 @@ message CancelResponse {
     string status = 1;
 }
 
+message ViewOrderBookRequest {
+    string symbol = 1;  // Optional: can be empty to view all symbols
+}
+
+message OrderBookEntry {
+    string order_id = 1;
+    string trader_id = 2;
+    string symbol = 3;
+    double price = 4;
+    int32 quantity = 5;
+    bool is_buy_order = 6;
+    string timestamp = 7;
+}
+
+message ViewOrderBookResponse {
+    repeated OrderBookEntry buy_orders = 1;
+    repeated OrderBookEntry sell_orders = 2;
+}

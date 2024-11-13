@@ -8,6 +8,8 @@
 #include <memory>
 #include <string>
 #include <mutex>
+#include <utility>
+#include <vector>
 
 class OrderError : public std::runtime_error {
 public:
@@ -27,9 +29,12 @@ public:
                             
     std::string cancelOrder(const std::string& order_id, bool is_buy_order);
 
+    // New method
+    std::pair<std::vector<Order>, std::vector<Order>> getOrderBook(const std::string& symbol = "") const;
+
 private:
     std::shared_ptr<OrderBook> orderBook_;
-    std::mutex order_mutex_;
+    mutable std::mutex order_mutex_;
 };
 
 #endif // ORDER_CLIENT_SERVER_HPP

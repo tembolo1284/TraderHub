@@ -1,0 +1,25 @@
+services:
+  server:
+    build: .
+    container_name: traderhub-server
+    ports:
+      - "50051:50051"
+    networks:
+      - trading-net
+
+  client:
+    build: .
+    container_name: traderhub-client
+    entrypoint: /usr/local/bin/OrderClient
+    environment:
+      - SERVER_HOST=traderhub-server
+      - SERVER_PORT=50051
+    networks:
+      - trading-net
+    depends_on:
+      - server
+
+networks:
+  trading-net:
+    name: trading-net
+    driver: bridge

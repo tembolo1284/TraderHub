@@ -20,30 +20,45 @@ using grpc::Status;
 using namespace order_service;
 namespace fs = std::filesystem;
 
+std::string getServerAddress() {
+    // Check environment variables first
+    const char* host = std::getenv("SERVER_HOST");
+    const char* port = std::getenv("SERVER_PORT");
+    
+    if (host && port) {
+        return std::string(host) + ":" + std::string(port);
+    } else if (host) {
+        return std::string(host) + ":50051";
+    }
+    
+    // Fallback to default
+    return "localhost:50051";
+}
+
 class OrderClient {
 public:
     OrderClient(const std::string& server_address) {
         spdlog::info("Connecting to server at {}", server_address);
-        
+
         auto channel = grpc::CreateChannel(
-            server_address, 
+            server_address,
             grpc::InsecureChannelCredentials()
         );
-        
+
         // Wait for connection
         if (!channel->WaitForConnected(std::chrono::system_clock::now() + 5s)) {
             throw std::runtime_error("Failed to connect to server");
         }
-        
+
         stub_ = OrderService::NewStub(channel);
         spdlog::info("Connected to server successfully");
     }
 
-    bool submitOrder(const std::string& order_id, 
+    bool submitOrder(const std::string& order_id,
                     const std::string& trader_id,
-                    const std::string& stock_symbol, 
-                    double price, 
-                    int quantity, 
+                    const std::string& stock_symbol,
+                    double price,
+                    int quantity,
                     bool is_buy) {
         OrderRequest request;
         auto* details = request.mutable_details();
@@ -56,8 +71,8 @@ public:
 
         OrderResponse response;
         ClientContext context;
-        
-        spdlog::info("Submitting order: ID={}, Symbol={}, Price={}, Qty={}, Side={}", 
+
+        spdlog::info("Submitting order: ID={}, Symbol={}, Price={}, Qty={}, Side={}",
                     order_id, stock_symbol, price, quantity, is_buy ? "BUY" : "SELL");
 
         Status status = stub_->SubmitOrder(&context, request, &response);
@@ -71,7 +86,7 @@ public:
             }
             return true;
         }
-        
+
         spdlog::error("RPC failed: {}", status.error_message());
         return false;
     }
@@ -84,7 +99,7 @@ public:
 
         CancelResponse response;
         ClientContext context;
-        
+
         spdlog::info("Cancelling order: ID={}", order_id);
 
         Status status = stub_->CancelOrder(&context, request, &response);
@@ -93,7 +108,7 @@ public:
             spdlog::info("Cancel request result: {}", OrderStatus_Name(response.status()));
             return response.status() == OrderStatus::CANCELLED;
         }
-        
+
         spdlog::error("RPC failed: {}", status.error_message());
         return false;
     }
@@ -101,11 +116,11 @@ public:
     bool viewOrderBook(const std::string& symbol = "") {
         ViewOrderBookRequest request;
         request.set_symbol(symbol);
-        
+
         ViewOrderBookResponse response;
         ClientContext context;
-        
-        spdlog::info("Requesting order book{}...", 
+
+        spdlog::info("Requesting order book{}...",
                      symbol.empty() ? "" : " for symbol " + symbol);
 
         Status status = stub_->ViewOrderBook(&context, request, &response);
@@ -114,15 +129,15 @@ public:
             // Print buy orders
             std::cout << "\nBuy Orders:\n";
             std::cout << std::string(80, '-') << "\n";
-            std::cout << std::setw(12) << "Order ID" 
-                      << std::setw(12) << "Trader" 
+            std::cout << std::setw(12) << "Order ID"
+                      << std::setw(12) << "Trader"
                       << std::setw(10) << "Symbol"
                       << std::setw(12) << "Price"
                       << std::setw(12) << "Quantity"
                       << std::setw(12) << "Remaining"
                       << "\n";
             std::cout << std::string(80, '-') << "\n";
-            
+
             for (const auto& entry : response.buy_orders()) {
                 const auto& details = entry.details();
                 std::cout << std::setw(12) << details.order_id()
@@ -137,15 +152,15 @@ public:
             // Print sell orders
             std::cout << "\nSell Orders:\n";
             std::cout << std::string(80, '-') << "\n";
-            std::cout << std::setw(12) << "Order ID" 
-                      << std::setw(12) << "Trader" 
+            std::cout << std::setw(12) << "Order ID"
+                      << std::setw(12) << "Trader"
                       << std::setw(10) << "Symbol"
                       << std::setw(12) << "Price"
                       << std::setw(12) << "Quantity"
                       << std::setw(12) << "Remaining"
                       << "\n";
             std::cout << std::string(80, '-') << "\n";
-            
+
             for (const auto& entry : response.sell_orders()) {
                 const auto& details = entry.details();
                 std::cout << std::setw(12) << details.order_id()
@@ -163,7 +178,7 @@ public:
 
             return true;
         }
-        
+
         spdlog::error("RPC failed: {}", status.error_message());
         return false;
     }
@@ -172,9 +187,9 @@ public:
         try {
             // Construct path to data directory
             fs::path dataPath = fs::current_path() / "data" / filename;
-            
+
             spdlog::info("Attempting to read orders from: {}", dataPath.string());
-            
+
             std::ifstream file(dataPath);
             if (!file.is_open()) {
                 spdlog::error("Failed to open file: {}", dataPath.string());
@@ -211,7 +226,7 @@ public:
                     continue;
                 }
             }
-            
+
             spdlog::info("Successfully processed {} orders from file", orderCount);
             return true;
         }
@@ -250,13 +265,17 @@ void printUsage() {
 int main(int argc, char* argv[]) {
     try {
         spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%^%l%$] %v");
-        
+
         if (argc < 2) {
             printUsage();
             return 1;
         }
 
-        OrderClient client("localhost:50051");
+        // Get server address from environment or use default
+        std::string server_address = getServerAddress();
+        spdlog::info("Using server address: {}", server_address);
+
+        OrderClient client(server_address);
         std::string command = argv[1];
 
         if (command == "submit" && argc == 8) {

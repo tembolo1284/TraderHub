@@ -3,7 +3,7 @@
 # Function to stop and remove existing containers
 cleanup() {
     echo "Cleaning up existing containers..."
-    docker compose down
+    docker-compose down
     docker network rm trading-net 2>/dev/null || true
     docker system prune -f
 }
@@ -20,14 +20,14 @@ ensure_network() {
 build_image() {
     echo "Building Docker image..."
     ensure_network
-    docker compose build
+    docker-compose build
 }
 
 # Function to run the server
 run_server() {
     echo "Starting server..."
     ensure_network
-    docker compose up server
+    docker-compose up server
 }
 
 # Function to run the client
@@ -46,9 +46,9 @@ run_client() {
     
     # Run the client with all passed arguments
     if [ $# -eq 0 ]; then
-        docker compose run --rm client view
+        docker-compose run --rm client view
     else
-        docker compose run --rm client "$@"
+        docker-compose run --rm client "$@"
     fi
 }
 
